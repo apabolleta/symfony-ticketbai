@@ -29,7 +29,7 @@ To get a local copy of this project up and running follow the next steps.
 git clone https://github.com/apabolleta/symfony-ticketbai.git
 ```
 
-1. Install project dependencies via Composer:
+2. Install project dependencies via Composer:
 ```bash
 cd symfony-ticketbai/
 composer install
