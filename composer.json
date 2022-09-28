@@ -1,0 +1,33 @@
+{
+    "name": "apabolleta/ticketbai-bundle",
+    "description": "Symfony Bundle for TicketBAI system.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "APM\\TicketBAIBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "APM\\TicketBAIBundle\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Asier Pabolleta Martorell",
+            "email": "apabolleta@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/http-kernel": "^5.4",
+        "symfony/dependency-injection": "^5.4",
+        "symfony/config": "^5.4",
+        "symfony/yaml": "^5.4",
+        "symfony/validator": "^5.4",
+        "symfony/serializer": "^5.4"
+    },
+    "require-dev": {
+        "symfony/test-pack": "^1.0"
+    }
+}
