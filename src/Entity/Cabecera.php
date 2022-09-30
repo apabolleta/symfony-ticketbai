@@ -15,6 +15,11 @@ use APM\TicketBAIBundle\TicketBAI;
 class Cabecera
 {
     /**
+     * Identificación de la versión de la estructura del fichero TicketBAI utilizado.
+     *
+     * @access  private
+     * @var     string
+     *
      * @Assert\NotBlank
      * @Assert\Choice(choices=TicketBAI::L0_IDVersionTBAI)
      */
