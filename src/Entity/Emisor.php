@@ -14,12 +14,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Emisor
 {
     /**
+     * NIF del emisor o de la emisora.
+     *
+     * @access  private
+     * @var     string
+     *
      * @Assert\NotBlank
      * @Assert\Regex("/^[0-9]{8}[A-Z]$/")
      */
     private string $NIF;
 
     /**
+     * Apellidos y nombre o razón social o denominación social completa del emisor o de la emisora.
+     *
+     * @access  private
+     * @var     string
+     *
      * @Assert\NotBlank
      * @Assert\Length(
      *      max: 120
