@@ -16,32 +16,49 @@ class IDOtro
 {
     /**
      * Código del país asociado al destinatario o a la destinataria.
+     * Formato:             Alfanumérico(2)
+     * Valores posibles:    L1 (ISO 3166-1 alpha-2)
+     * Obligatorio:         No
      *
      * @access  private
      * @var     string
      *
+     * @Assert\Type(type: 'alnum')
+     * @Assert\Length(
+     *      max: 2
+     * )
      * @Assert\Country
      */
     private string $CodigoPais;
 
     /**
      * Clave para establecer el tipo de identificación en el país de residencia.
+     * Formato:             Alfanumérico(2)
+     * Valores posibles:    L2
+     * Obligatorio:         Sí
      *
      * @access  private
      * @var     string
      *
      * @Assert\NotBlank
+     * @Assert\Type(type: 'alnum')
+     * @Assert\Length(
+     *      max: 2
+     * )
      * @Assert\Choice(choices=TicketBAI::L2_IDType)
      */
     private string $IDType;
 
     /**
      * Número de identificación en el país de residencia.
+     * Formato:         Alfanumérico(20)
+     * Obligatorio:     Sí
      *
      * @access  private
      * @var     string
      *
      * @Assert\NotBlank
+     * @Assert\Type(type: 'alnum')
      * @Assert\Length(
      *      max: 20
      * )
