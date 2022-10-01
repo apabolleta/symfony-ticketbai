@@ -23,6 +23,10 @@ class Cabecera
      * @var     string
      *
      * @Assert\NotBlank
+     * @Assert\Type(type: 'alnum')
+     * @Assert\Length(
+     *      max: 5
+     * )
      * @Assert\Choice(choices=TicketBAI::L0_IDVersionTBAI)
      */
     private string $IDVersionTBAI;
