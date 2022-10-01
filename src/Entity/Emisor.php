@@ -15,22 +15,31 @@ class Emisor
 {
     /**
      * NIF del emisor o de la emisora.
+     * Formato:         FormatoNIF(9)
+     * Obligatorio:     Sí
      *
      * @access  private
      * @var     string
      *
      * @Assert\NotBlank
+     * @Assert\Type(type: 'alnum')
+     * @Assert\Length(
+     *      max: 9
+     * )
      * @Assert\Regex("/^[0-9]{8}[A-Z]$/")
      */
     private string $NIF;
 
     /**
      * Apellidos y nombre o razón social o denominación social completa del emisor o de la emisora.
+     * Formato:         Alfanumérico(120)
+     * Obligatorio:     Sí
      *
      * @access  private
      * @var     string
      *
      * @Assert\NotBlank
+     * @Assert\Type(type: 'alnum')
      * @Assert\Length(
      *      max: 120
      * )
