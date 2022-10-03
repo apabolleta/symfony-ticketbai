@@ -15,6 +15,7 @@ class Emisor
 {
     /**
      * NIF del emisor o de la emisora.
+     *
      * Formato:         FormatoNIF(9)
      * Obligatorio:     Sí
      *
@@ -32,6 +33,7 @@ class Emisor
 
     /**
      * Apellidos y nombre o razón social o denominación social completa del emisor o de la emisora.
+     *
      * Formato:         Alfanumérico(120)
      * Obligatorio:     Sí
      *

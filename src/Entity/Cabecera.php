@@ -16,6 +16,7 @@ class Cabecera
 {
     /**
      * Identificación de la versión de la estructura del fichero TicketBAI utilizado.
+     *
      * Formato:             Alfanumérico(5)
      * Valores posibles:    L0
      * Obligatorio:         Sí
