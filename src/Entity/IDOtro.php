@@ -24,9 +24,10 @@ class IDOtro
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type: 'alnum')
+     * @Assert\Type(type="alnum")
      * @Assert\Length(
-     *      max: 2
+     *      min = 2,
+     *      max = 2
      * )
      * @Assert\Country
      */
@@ -43,9 +44,10 @@ class IDOtro
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type: 'alnum')
+     * @Assert\Type(type="alnum")
      * @Assert\Length(
-     *      max: 2
+     *      min = 2,
+     *      max = 2
      * )
      * @Assert\Choice(choices=TicketBAI::L2_IDType)
      */
@@ -61,9 +63,9 @@ class IDOtro
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type: 'alnum')
+     * @Assert\Type(type="alnum")
      * @Assert\Length(
-     *      max: 20
+     *      max = 20
      * )
      */
     private string $ID;

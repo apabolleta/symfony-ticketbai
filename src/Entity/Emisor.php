@@ -23,9 +23,10 @@ class Emisor
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type: 'alnum')
+     * @Assert\Type(type="alnum")
      * @Assert\Length(
-     *      max: 9
+     *      min = 9,
+     *      max = 9
      * )
      * @Assert\Regex("/^[0-9]{8}[A-Z]$/")
      */
@@ -41,9 +42,9 @@ class Emisor
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type: 'alnum')
+     * @Assert\Type(type="alnum")
      * @Assert\Length(
-     *      max: 120
+     *      max = 120
      * )
      */
     private string $ApellidosNombreRazonSocial;
