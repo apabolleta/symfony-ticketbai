@@ -3,7 +3,6 @@
 namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use APM\TicketBAIBundle\TicketBAI;
 
 /**
  * Class to define TicketBAI system 'IDOtro' structure.
@@ -49,7 +48,7 @@ class IDOtro
      *      min = 2,
      *      max = 2
      * )
-     * @Assert\Choice(choices=TicketBAI::L2_IDType)
+     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L2_IDType)
      */
     private string $IDType;
 

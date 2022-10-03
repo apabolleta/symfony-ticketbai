@@ -3,7 +3,6 @@
 namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use APM\TicketBAIBundle\TicketBAI;
 
 /**
  * Class to define TicketBAI system 'Cabecera' structure.
@@ -29,7 +28,7 @@ class Cabecera
      * @Assert\Length(
      *      max = 5
      * )
-     * @Assert\Choice(choices=TicketBAI::L0_IDVersionTBAI)
+     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L0_IDVersionTBAI)
      */
     private string $IDVersionTBAI;
 
