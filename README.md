@@ -35,6 +35,13 @@ cd symfony-ticketbai/
 composer install
 ```
 
+Alternativelly, to include it inside a Symfony application, install it as a project dependency using Composer:
+
+```bash
+cd my-symfony-app/
+composer require apabolleta/ticketbai-bundle
+```
+
 <!-- LICENSE -->
 ## License
 
