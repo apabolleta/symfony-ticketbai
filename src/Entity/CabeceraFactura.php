@@ -163,6 +163,7 @@ class CabeceraFactura
      * @access  private
      * @var     array
      *
+     * @Assert\Type(type="array")
      * @Assert\Count(
      *      min = 1,
      *      max = 100

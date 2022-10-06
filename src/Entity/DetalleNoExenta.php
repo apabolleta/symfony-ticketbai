@@ -43,6 +43,7 @@ class DetalleNoExenta
      * @var     array
      *
      * @Assert\NotNull
+     * @Assert\Type(type="array")
      * @Assert\Count(
      *      min = 1,
      *      max = 6
