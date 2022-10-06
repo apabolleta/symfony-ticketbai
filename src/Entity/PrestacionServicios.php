@@ -5,7 +5,7 @@ namespace APM\TicketBAIBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use APM\TicketBAIBundle\Entity\Sujeta;
-use APM\TicketBAIBundle\Entity\NoSujeta;
+use APM\TicketBAIBundle\Entity\DetalleNoSujeta;
 
 /**
  * Class to define TicketBAI system 'PrestacionServicios' structure.
@@ -29,14 +29,23 @@ class PrestacionServicios
 
     /**
      * Obligatorio:         No
+     * Agrupación:          DetalleNoSujeta (1 a 2)
      *
      * @access  private
-     * @var     NoSujeta
+     * @var     array
      *
-     * @Assert\Type(type="NoSujeta")
-     * @Assert\Valid
+     * @Assert\Type(type="array")
+     * @Assert\Count(
+     *      min = 1,
+     *      max = 2
+     * )
+     * @Assert\All({
+     *      @Assert\NotNull,
+     *      @Assert\Type(type="DetalleNoSujeta"),
+     *      @Assert\Valid
+     * })
      */
-    private NoSujeta $NoSujeta;
+    private array $NoSujeta;
 
     public function getSujeta(): ?Sujeta
     {
@@ -50,12 +59,12 @@ class PrestacionServicios
         return $this;
     }
 
-    public function getNoSujeta(): ?NoSujeta
+    public function getNoSujeta(): ?array
     {
         return $this->NoSujeta;
     }
 
-    public function setNoSujeta(NoSujeta $NoSujeta): self
+    public function setNoSujeta(array $NoSujeta): self
     {
         $this->NoSujeta = $NoSujeta;
 
