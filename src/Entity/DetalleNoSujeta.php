@@ -4,8 +4,6 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use APM\TicketBAIBundle\Entity\DetalleIVA;
-
 /**
  * Class to define TicketBAI system 'DetalleNoSujeta' structure.
  *
