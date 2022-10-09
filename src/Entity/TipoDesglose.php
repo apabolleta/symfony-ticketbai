@@ -3,6 +3,7 @@
 namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\GroupSequenceProviderInterface;
 
 use APM\TicketBAIBundle\Entity\DesgloseFactura;
 use APM\TicketBAIBundle\Entity\DesgloseTipoOperacion;
@@ -13,8 +14,10 @@ use APM\TicketBAIBundle\Entity\DesgloseTipoOperacion;
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
+ * @Assert\GroupSequenceProvider
+ *
  */
-class TipoDesglose
+class TipoDesglose implements GroupSequenceProviderInterface
 {
     /**
      * Cuando la contraparte es un “nacional” o no existe contraparte.
@@ -40,7 +43,7 @@ class TipoDesglose
      * @access  private
      * @var     DesgloseTipoOperacion
      *
-     * @Assert\NotNull(groups={"isNoNational"})
+     * @Assert\NotNull(groups={"isInternational"})
      * @Assert\Type(type="DesgloseTipoOperacion")
      * @Assert\Valid
      */
@@ -68,5 +71,13 @@ class TipoDesglose
         $this->DesgloseTipoOperacion = $DesgloseTipoOperacion;
 
         return $this;
+    }
+
+    public function getGroupSequence()
+    {
+        return [
+            'TipoDesglose',
+            $this->getDesgloseTipoOperacion() ? 'isInternational' : 'isNational'
+        ];
     }
 }
