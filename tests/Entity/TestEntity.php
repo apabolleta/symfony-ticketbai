@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\Tests\Entity;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class to define basic Entity test class.
@@ -14,15 +15,38 @@ use Symfony\Component\Validator\Validation;
  */
 class TestEntity extends TestCase
 {
-    protected $validator;
-
-    public function __construct()
+    protected static function getValidatorInterface(): ValidatorInterface
     {
-        parent::__construct();
-
-        $this->validator = Validation::createValidatorBuilder()
+        return Validation::createValidatorBuilder()
             ->enableAnnotationMapping(true)
             ->addDefaultDoctrineAnnotationReader()
             ->getValidator();
+    }
+
+    public static function assertIsValid(mixed $value, ...$args): void
+    {
+        $validator = self::getValidatorInterface();
+
+        $violations = $validator->validate($value, ...$args);
+
+        self::assertCount(0, $violations);
+    }
+
+    public static function assertIsNotValid(mixed $value, ...$args): void
+    {
+        $validator = self::getValidatorInterface();
+
+        $violations = $validator->validate($value, ...$args);
+
+        self::assertNotCount(0, $violations);
+    }
+
+    public static function assertCountConstraintViolations(int $expectedCount, mixed $value, ...$args): void
+    {
+        $validator = self::getValidatorInterface();
+
+        $violations = $validator->validate($value, ...$args);
+
+        self::assertCount($expectedCount, $violations);
     }
 }
