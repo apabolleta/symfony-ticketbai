@@ -23,7 +23,7 @@ class TestEntity extends TestCase
             ->getValidator();
     }
 
-    public static function assertIsValid(mixed $value, ...$args): void
+    public static function assertIsValid($value, ...$args): void
     {
         $validator = self::getValidatorInterface();
 
@@ -32,7 +32,7 @@ class TestEntity extends TestCase
         self::assertCount(0, $violations);
     }
 
-    public static function assertIsNotValid(mixed $value, ...$args): void
+    public static function assertIsNotValid($value, ...$args): void
     {
         $validator = self::getValidatorInterface();
 
@@ -41,7 +41,7 @@ class TestEntity extends TestCase
         self::assertNotCount(0, $violations);
     }
 
-    public static function assertCountConstraintViolations(int $expectedCount, mixed $value, ...$args): void
+    public static function assertCountConstraintViolations($expectedCount, $value, ...$args): void
     {
         $validator = self::getValidatorInterface();
 
