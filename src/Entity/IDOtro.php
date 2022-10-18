@@ -23,7 +23,7 @@ class IDOtro
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 2,
      *      max = 2
@@ -43,7 +43,7 @@ class IDOtro
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 2,
      *      max = 2
@@ -62,7 +62,7 @@ class IDOtro
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
      * )

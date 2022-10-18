@@ -23,7 +23,7 @@ class Emisor
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 9,
      *      max = 9
@@ -42,7 +42,7 @@ class Emisor
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 120
      * )

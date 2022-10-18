@@ -33,7 +33,7 @@ class CabeceraFactura
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
      * )
@@ -54,7 +54,7 @@ class CabeceraFactura
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Type(type="digit", groups={"strict"})
      * @Assert\Length(
      *      max = 20
@@ -115,7 +115,7 @@ class CabeceraFactura
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 1,
      *      max = 1
@@ -136,7 +136,7 @@ class CabeceraFactura
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 1,
      *      max = 1

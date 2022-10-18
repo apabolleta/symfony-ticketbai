@@ -22,7 +22,7 @@ class IDFacturaRectificadaSustituida
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
      * )
@@ -40,7 +40,7 @@ class IDFacturaRectificadaSustituida
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Type(type="digit", groups={"strict"})
      * @Assert\Length(
      *      max = 20

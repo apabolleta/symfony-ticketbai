@@ -23,7 +23,7 @@ class IDDetalleFactura
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 250
      * )

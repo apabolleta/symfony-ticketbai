@@ -48,7 +48,7 @@ class HuellaTBAI
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 30
      * )

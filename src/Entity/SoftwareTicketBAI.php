@@ -26,7 +26,7 @@ class SoftwareTicketBAI
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
      * )
@@ -56,7 +56,7 @@ class SoftwareTicketBAI
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 120
      * )
@@ -73,7 +73,7 @@ class SoftwareTicketBAI
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
      * )

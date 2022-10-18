@@ -29,7 +29,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @var     string
      *
      * @Assert\NotBlank(groups={"isNational"})
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 9,
      *      max = 9
@@ -61,7 +61,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 120
      * )
@@ -78,7 +78,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @var     string
      *
      * @Assert\NotBlank(groups={"gipuzkoa"})
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
      * )
@@ -95,7 +95,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @var     string
      *
      * @Assert\NotBlank(groups={"gipuzkoa"})
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 250
      * )

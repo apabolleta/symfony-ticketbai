@@ -30,7 +30,7 @@ class PersonaOEntidadDesarrolladora implements GroupSequenceProviderInterface
      * @var     string
      *
      * @Assert\NotBlank(groups={"isNational"})
-     * @Assert\Type(type="alnum")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 9,
      *      max = 9
