@@ -39,7 +39,7 @@ Alternativelly, to include it inside a Symfony application, install it as a proj
 
 ```bash
 cd my-symfony-app/
-composer require apabolleta/ticketbai-bundle
+composer require apabolleta/symfony-ticketbai
 ```
 
 <!-- LICENSE -->
