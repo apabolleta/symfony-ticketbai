@@ -1,5 +1,5 @@
 {
-    "name": "apabolleta/ticketbai-bundle",
+    "name": "apabolleta/symfony-ticketbai",
     "description": "Symfony Bundle for TicketBAI system.",
     "type": "symfony-bundle",
     "license": "MIT",
