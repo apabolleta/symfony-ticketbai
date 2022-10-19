@@ -19,7 +19,7 @@ To get a local copy of this project up and running follow the next steps.
 
 ### Prerequisites
 
-- PHP 7.2.5 or higher (see installation steps at the official [website](https://www.php.net/))
+- PHP 7.4 or higher (see installation steps at the official [website](https://www.php.net/))
 - Composer (see installation steps at the official [website](https://getcomposer.org/))
 
 ### Installation
