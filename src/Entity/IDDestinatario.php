@@ -46,7 +46,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @var     IDOtro
      *
      * @Assert\NotNull(groups={"isInternational"})
-     * @Assert\Type(type="IDOtro")
+     * @Assert\Type(type=IDOtro::class)
      * @Assert\Valid
      */
     private IDOtro $IDOtro;
@@ -166,8 +166,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
     {
         return [
             'IDDestinatario',
-            $this->getIDOtro() ? 'isInternational' : 'isNational',
-            // TODO: Check TicketBAI implementation for 'gipuzkoa'
+            isset($this->IDOtro) ? 'isInternational' : 'isNational'
         ];
     }
 }
