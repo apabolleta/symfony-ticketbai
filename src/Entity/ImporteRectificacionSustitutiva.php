@@ -23,7 +23,7 @@ class ImporteRectificacionSustitutiva
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="numeric")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 15
      * )
@@ -41,7 +41,7 @@ class ImporteRectificacionSustitutiva
      * @var     string
      *
      * @Assert\NotBlank
-     * @Assert\Type(type="numeric")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 15
      * )
@@ -58,7 +58,7 @@ class ImporteRectificacionSustitutiva
      * @access  private
      * @var     string
      *
-     * @Assert\Type(type="numeric")
+     * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 15
      * )
