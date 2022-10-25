@@ -28,6 +28,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @access  private
      * @var     string
      *
+     * @Assert\IsNull(groups={"isInternational"})
      * @Assert\NotBlank(groups={"isNational"})
      * @Assert\Type(type="string")
      * @Assert\Length(
@@ -45,6 +46,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @access  private
      * @var     IDOtro
      *
+     * @Assert\IsNull(groups={"isNational"})
      * @Assert\NotNull(groups={"isInternational"})
      * @Assert\Type(type=IDOtro::class)
      * @Assert\Valid
@@ -166,7 +168,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
     {
         return [
             'IDDestinatario',
-            isset($this->IDOtro) ? 'isInternational' : 'isNational'
+            isset($this->NIF) ? 'isNational' : 'isInternational'
         ];
     }
 }
