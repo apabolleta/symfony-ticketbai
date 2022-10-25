@@ -45,5 +45,18 @@ final class IDDestinatarioTest extends TestEntity
         $idDestinatario = new IDDestinatario();
 
         self::assertIsNotValid($idDestinatario);
+
+        $idOtro = new IDOtro();
+        $idOtro
+            ->setCodigoPais("AAA")
+            ->setIDType("04")
+            ->setID("12345678A");
+
+        $idDestinatario
+            ->setNIF("12345678A")
+            ->setIDOtro($idOtro)
+            ->setApellidosNombreRazonSocial("Company Name S.L.");
+
+        self::assertCountConstraintViolations(2, $idDestinatario);
     }
 }
