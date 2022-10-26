@@ -48,7 +48,7 @@ final class IDDestinatarioTest extends TestEntity
 
         $idOtro = new IDOtro();
         $idOtro
-            ->setCodigoPais("AAA")
+            ->setCodigoPais("BR")
             ->setIDType("04")
             ->setID("12345678A");
 
@@ -57,6 +57,6 @@ final class IDDestinatarioTest extends TestEntity
             ->setIDOtro($idOtro)
             ->setApellidosNombreRazonSocial("Company Name S.L.");
 
-        self::assertCountConstraintViolations(2, $idDestinatario);
+        self::assertCountConstraintViolations(1, $idDestinatario);
     }
 }
