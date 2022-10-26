@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
 use APM\TicketBAIBundle\Entity\ImporteRectificacionSustitutiva;
 
 /**
@@ -31,7 +32,7 @@ class FacturaRectificativa
      *      min = 2,
      *      max = 2
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L7_Codigo)
+     * @Assert\Choice(choices=TicketBAI::L7_Codigo)
      */
     private string $Codigo;
 
@@ -51,7 +52,7 @@ class FacturaRectificativa
      *      min = 1,
      *      max = 1
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L8_Tipo)
+     * @Assert\Choice(choices=TicketBAI::L8_Tipo)
      */
     private string $Tipo;
 
@@ -61,7 +62,7 @@ class FacturaRectificativa
      * @access  private
      * @var     ImporteRectificacionSustitutiva
      *
-     * @Assert\Type(type="ImporteRectificacionSustitutiva")
+     * @Assert\Type(type=ImporteRectificacionSustitutiva::class)
      * @Assert\Valid
      */
     private ImporteRectificacionSustitutiva $ImporteRectificacionSustitutiva;
