@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
+
 /**
  * Class to define TicketBAI system 'IDClave' structure.
  *
@@ -29,7 +31,7 @@ class IDClave
      *      min = 2,
      *      max = 2
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L9_ClaveRegimenIVAOperacionTranscendencia)
+     * @Assert\Choice(choices=TicketBAI::L9_ClaveRegimenIVAOperacionTranscendencia)
      */
     private string $ClaveRegimenIVAOperacionTranscendencia;
 
