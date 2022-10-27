@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
+
 /**
  * Class to define TicketBAI system 'DetalleExenta' structure.
  *
@@ -29,7 +31,7 @@ class DetalleExenta
      *      min = 2,
      *      max = 2
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L10_CausaExencion)
+     * @Assert\Choice(choices=TicketBAI::L10_CausaExencion)
      */
     private string $CausaExencion;
 
