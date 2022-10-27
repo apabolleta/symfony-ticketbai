@@ -67,9 +67,9 @@ class DatosFactura
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="IDDetalleFactura"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=IDDetalleFactura::class)
      * })
+     * @Assert\Valid
      */
     private array $DetallesFactura;
 
@@ -140,9 +140,9 @@ class DatosFactura
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="IDClave"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=IDClave::class)
      * })
+     * @Assert\Valid
      */
     private array $Claves;
 
