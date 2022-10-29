@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
+
 /**
  * Class to define TicketBAI system 'DetalleIVA' structure.
  *
@@ -116,7 +118,7 @@ class DetalleIVA
      *      min = 1,
      *      max = 1
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L12_OperacionEnRecargoDeEquivalenciaORegimenSimplificado)
+     * @Assert\Choice(choices=TicketBAI::L12_OperacionEnRecargoDeEquivalenciaORegimenSimplificado)
      */
     private string $OperacionEnRecargoDeEquivalenciaORegimenSimplificado;
 
