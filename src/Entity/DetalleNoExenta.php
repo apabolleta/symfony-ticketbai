@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
 use APM\TicketBAIBundle\Entity\DetalleIVA;
 
 /**
@@ -31,7 +32,7 @@ class DetalleNoExenta
      *      min = 2,
      *      max = 2
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L11_TipoNoExenta)
+     * @Assert\Choice(choices=TicketBAI::L11_TipoNoExenta)
      */
     private string $TipoNoExenta;
 
@@ -50,9 +51,9 @@ class DetalleNoExenta
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="DetalleIVA"),
-     *      @Assert\Valid
+     *      @Assert\Type(type="DetalleIVA")
      * })
+     * @Assert\Valid
      */
     private array $DesgloseIVA;
 
