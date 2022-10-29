@@ -30,9 +30,9 @@ class Sujeta
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="DetalleExenta"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=DetalleExenta::class)
      * })
+     * @Assert\Valid
      */
     private array $Exenta;
 
@@ -50,9 +50,9 @@ class Sujeta
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="DetalleNoExenta"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=DetalleNoExenta::class)
      * })
+     * @Assert\Valid
      */
     private array $NoExenta;
 
