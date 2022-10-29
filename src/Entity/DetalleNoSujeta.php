@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
+
 /**
  * Class to define TicketBAI system 'DetalleNoSujeta' structure.
  *
@@ -29,7 +31,7 @@ class DetalleNoSujeta
      *      min = 2,
      *      max = 2
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L13_Causa)
+     * @Assert\Choice(choices=TicketBAI::L13_Causa)
      */
     private string $Causa;
 
