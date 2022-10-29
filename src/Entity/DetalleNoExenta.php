@@ -51,7 +51,7 @@ class DetalleNoExenta
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="DetalleIVA")
+     *      @Assert\Type(type=DetalleIVA::class)
      * })
      * @Assert\Valid
      */
