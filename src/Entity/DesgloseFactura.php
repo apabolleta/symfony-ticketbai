@@ -22,7 +22,7 @@ class DesgloseFactura
      * @access  private
      * @var     Sujeta
      *
-     * @Assert\Type(type="Sujeta")
+     * @Assert\Type(type=Sujeta::class)
      * @Assert\Valid
      */
     private Sujeta $Sujeta;
@@ -41,9 +41,9 @@ class DesgloseFactura
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="DetalleNoSujeta"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=DetalleNoSujeta::class)
      * })
+     * @Assert\Valid
      */
     private array $NoSujeta;
 
