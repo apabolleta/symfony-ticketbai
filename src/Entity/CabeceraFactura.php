@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
 use APM\TicketBAIBundle\Entity\FacturaRectificativa;
 use APM\TicketBAIBundle\Entity\IDFacturaRectificadaSustituida;
 
@@ -120,7 +121,7 @@ class CabeceraFactura
      *      min = 1,
      *      max = 1
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L5_FacturaSimplificada)
+     * @Assert\Choice(choices=TicketBAI::L5_FacturaSimplificada)
      */
     private string $FacturaSimplificada;
 
@@ -141,7 +142,7 @@ class CabeceraFactura
      *      min = 1,
      *      max = 1
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L6_FacturaEmitidaSustitucionSimplificada)
+     * @Assert\Choice(choices=TicketBAI::L6_FacturaEmitidaSustitucionSimplificada)
      */
     private string $FacturaEmitidaSustitucionSimplificada;
 
@@ -151,7 +152,7 @@ class CabeceraFactura
      * @access  private
      * @var     FacturaRectificativa
      *
-     * @Asert\Type(type="FacturaRectificativa")
+     * @Asert\Type(type=FacturaRectificativa::class)
      * @Assert\Valid
      */
     private FacturaRectificativa $FacturaRectificativa;
@@ -170,9 +171,9 @@ class CabeceraFactura
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="IDFacturaRectificadaSustituida"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=IDFacturaRectificadaSustituida::class)
      * })
+     * @Assert\Valid
      */
     private array $FacturasRectificadasSustituidas;
 
