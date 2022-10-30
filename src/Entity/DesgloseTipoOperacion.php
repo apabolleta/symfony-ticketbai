@@ -5,6 +5,7 @@ namespace APM\TicketBAIBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use APM\TicketBAIBundle\Entity\PrestacionServicios;
+use APM\TicketBAIBundle\Entity\Entrega;
 
 /**
  * Class to define TicketBAI system 'DesgloseTipoOperacion' structure.
@@ -21,7 +22,7 @@ class DesgloseTipoOperacion
      * @access  private
      * @var     PrestacionServicios
      *
-     * @Assert\Type(type="PrestacionServicios")
+     * @Assert\Type(type=PrestacionServicios::class)
      * @Assert\Valid
      */
     private PrestacionServicios $PrestacionServicios;
@@ -32,7 +33,7 @@ class DesgloseTipoOperacion
      * @access  private
      * @var     Entrega
      *
-     * @Assert\Type(type="Entrega")
+     * @Assert\Type(type=Entrega::class)
      * @Assert\Valid
      */
     private Entrega $Entrega;
