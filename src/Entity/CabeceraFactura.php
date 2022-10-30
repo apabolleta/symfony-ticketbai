@@ -152,7 +152,7 @@ class CabeceraFactura
      * @access  private
      * @var     FacturaRectificativa
      *
-     * @Asert\Type(type=FacturaRectificativa::class)
+     * @Assert\Type(type=FacturaRectificativa::class)
      * @Assert\Valid
      */
     private FacturaRectificativa $FacturaRectificativa;
