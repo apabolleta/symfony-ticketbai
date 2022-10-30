@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\TicketBAI;
 use APM\TicketBAIBundle\Entity\Emisor;
 use APM\TicketBAIBundle\Entity\IDDestinatario;
 
@@ -23,7 +24,7 @@ class Sujetos
      * @var     Emisor
      *
      * @Assert\NotNull
-     * @Assert\Type(type="Emisor")
+     * @Assert\Type(type=Emisor::class)
      * @Assert\Valid
      */
     private Emisor $Emisor;
@@ -42,9 +43,9 @@ class Sujetos
      * )
      * @Assert\All({
      *      @Assert\NotNull,
-     *      @Assert\Type(type="IDDestinatario"),
-     *      @Assert\Valid
+     *      @Assert\Type(type=IDDestinatario::class)
      * })
+     * @Assert\Valid
      */
     private array $Destinatarios;
 
@@ -64,7 +65,7 @@ class Sujetos
      *      min = 1,
      *      max = 1
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L3_VariosDestinatarios)
+     * @Assert\Choice(choices=TicketBAI::L3_VariosDestinatarios)
      */
     private string $VariosDestinatarios;
 
@@ -85,7 +86,7 @@ class Sujetos
      *      min = 1,
      *      max = 1
      * )
-     * @Assert\Choice(choices=APM\TicketBAIBundle\TicketBAI::L4_EmitidaPorTercerosODestinatario)
+     * @Assert\Choice(choices=TicketBAI::L4_EmitidaPorTercerosODestinatario)
      */
     private string $EmitidaPorTercerosODestinatario;
 
