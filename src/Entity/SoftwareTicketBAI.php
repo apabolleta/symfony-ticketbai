@@ -40,7 +40,7 @@ class SoftwareTicketBAI
      * @var     PersonaOEntidadDesarrolladora
      *
      * @Assert\NotNull
-     * @Assert\Type(type="PersonaOEntidadDesarrolladora")
+     * @Assert\Type(type=PersonaOEntidadDesarrolladora::class)
      * @Assert\Valid
      */
     private PersonaOEntidadDesarrolladora $PersonaOEntidadDesarrolladora;
