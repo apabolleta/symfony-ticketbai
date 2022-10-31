@@ -29,6 +29,7 @@ class PersonaOEntidadDesarrolladora implements GroupSequenceProviderInterface
      * @access  private
      * @var     string
      *
+     * @Assert\IsNull(groups={isInternational})
      * @Assert\NotBlank(groups={"isNational"})
      * @Assert\Type(type="string")
      * @Assert\Length(
@@ -46,8 +47,9 @@ class PersonaOEntidadDesarrolladora implements GroupSequenceProviderInterface
      * @access  private
      * @var     IDOtro
      *
+     * @Assert\IsNull(groups={isNational})
      * @Assert\NotNull(groups={"isInternational"})
-     * @Assert\Type(type="IDOtro")
+     * @Assert\Type(type=IDOtro::class)
      * @Assert\Valid
      */
     private IDOtro $IDOtro;
