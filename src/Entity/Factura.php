@@ -24,7 +24,7 @@ class Factura
      * @var     CabeceraFactura
      *
      * @Assert\NotNull
-     * @Assert\Type(type="CabeceraFactura")
+     * @Assert\Type(type=CabeceraFactura::class)
      * @Assert\Valid
      */
     private CabeceraFactura $CabeceraFactura;
@@ -36,7 +36,7 @@ class Factura
      * @var     DatosFactura
      *
      * @Assert\NotNull
-     * @Assert\Type(type="DatosFactura")
+     * @Assert\Type(type=DatosFactura::class)
      * @Assert\Valid
      */
     private DatosFactura $DatosFactura;
@@ -48,7 +48,7 @@ class Factura
      * @var     TipoDesglose
      *
      * @Assert\NotNull
-     * @Assert\Type(type="TipoDesglose")
+     * @Assert\Type(type=TipoDesglose::class)
      * @Assert\Valid
      */
     private TipoDesglose $TipoDesglose;
