@@ -22,7 +22,7 @@ class HuellaTBAI
      * @access  private
      * @var     EncadenamientoFacturaAnterior
      *
-     * @Assert\Type(type="EncadenamientoFacturaAnterior")
+     * @Assert\Type(type=EncadenamientoFacturaAnterior::class)
      * @Assert\Valid
      */
     private EncadenamientoFacturaAnterior $EncadenamientoFacturaAnterior;
@@ -34,7 +34,7 @@ class HuellaTBAI
      * @var     SoftwareTicketBAI
      *
      * @Assert\NotNull
-     * @Assert\Type(type="SoftwareTicketBAI")
+     * @Assert\Type(type=SoftwareTicketBAI::class)
      * @Assert\Valid
      */
     private SoftwareTicketBAI $SoftwareTicketBAI;
