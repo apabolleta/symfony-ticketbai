@@ -72,7 +72,6 @@ class FicheroAlta
      * @access  private
      * @var     string
      *
-     * @Assert\NotBlank
      * @Assert\Type(type="string")
      */
     private string $Signature;
