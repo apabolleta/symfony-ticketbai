@@ -25,7 +25,7 @@ class FicheroAlta
      * @var     Cabecera
      *
      * @Assert\NotNull
-     * @Assert\Type(type="Cabecera")
+     * @Assert\Type(type=Cabecera::class)
      * @Assert\Valid
      */
     private Cabecera $Cabecera;
@@ -37,7 +37,7 @@ class FicheroAlta
      * @var     Sujetos
      *
      * @Assert\NotNull
-     * @Assert\Type(type="Sujetos")
+     * @Assert\Type(type=Sujetos::class)
      * @Assert\Valid
      */
     private Sujetos $Sujetos;
@@ -49,7 +49,7 @@ class FicheroAlta
      * @var     Factura
      *
      * @Assert\NotNull
-     * @Assert\Type(type="Factura")
+     * @Assert\Type(type=Factura::class)
      * @Assert\Valid
      */
     private Factura $Factura;
@@ -61,7 +61,7 @@ class FicheroAlta
      * @var     HuellaTBAI
      *
      * @Assert\NotNull
-     * @Assert\Type(type="HuellaTBAI")
+     * @Assert\Type(type=HuellaTBAI::class)
      * @Assert\Valid
      */
     private HuellaTBAI $HuellaTBAI;
