@@ -28,7 +28,7 @@ class Emisor
      *      min = 9,
      *      max = 9
      * )
-     * @Assert\Regex("/^[0-9]{8}[A-Z]$/")
+     * @Assert\Regex("/^(([a-z|A-Z]{1}\d{7}[a-z|A-Z]{1})|(\d{8}[a-z|A-Z]{1})|([a-z|A-Z]{1}\d{8}))$/")
      */
     private string $NIF;
 
