@@ -44,7 +44,7 @@ class EncadenamientoFacturaAnterior
      * @Assert\Length(
      *      max = 20
      * )
-     * @Assert\Regex("/^[0-9]{1,20}$/", groups={"strict"})
+     * @Assert\Regex("/^\d{1,20}$/", groups={"strict"})
      */
     private string $NumFacturaAnterior;
 

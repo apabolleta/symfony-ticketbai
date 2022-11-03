@@ -47,9 +47,9 @@ class DetalleNoSujeta
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 15
+     *      max = 16
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,2})?$/")
      */
     private string $Importe;
 

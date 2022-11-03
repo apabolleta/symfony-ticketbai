@@ -42,9 +42,9 @@ class IDDetalleFactura
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 21
+     *      max = 22
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,8})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,8})?$/")
      */
     private string $Cantidad;
 
@@ -60,9 +60,9 @@ class IDDetalleFactura
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 21
+     *      max = 22
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,8})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,8})?$/")
      */
     private string $ImporteUnitario;
 
@@ -77,9 +77,9 @@ class IDDetalleFactura
      *
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 15
+     *      max = 16
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,2})?$/")
      */
     private string $Descuento;
 
@@ -95,9 +95,9 @@ class IDDetalleFactura
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 15
+     *      max = 16
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,2})?$/")
      */
     private string $ImporteTotal;
 

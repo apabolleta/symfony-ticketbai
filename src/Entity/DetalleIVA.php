@@ -27,9 +27,9 @@ class DetalleIVA
      * @Assert\NotBlank
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 15
+     *      max = 16
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,2})?$/")
      */
     private string $BaseImponible;
 
@@ -46,7 +46,7 @@ class DetalleIVA
      * @Assert\Length(
      *      max = 6
      * )
-     * @Assert\Regex("/^[0-9]{1,3}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^\d{1,3}(\.\d{0,2})?$/")
      */
     private string $TipoImpositivo;
 
@@ -61,9 +61,9 @@ class DetalleIVA
      *
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 15
+     *      max = 16
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,2})?$/")
      */
     private string $CuotaImpuesto;
 
@@ -80,7 +80,7 @@ class DetalleIVA
      * @Assert\Length(
      *      max = 6
      * )
-     * @Assert\Regex("/^[0-9]{1,3}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^\d{1,3}(\.\d{0,2})?$/")
      */
     private string $TipoRecargoEquivalencia;
 
@@ -95,9 +95,9 @@ class DetalleIVA
      *
      * @Assert\Type(type="string")
      * @Assert\Length(
-     *      max = 15
+     *      max = 16
      * )
-     * @Assert\Regex("/^[0-9]{1,12}([,][0-9]{1,2})?$/")
+     * @Assert\Regex("/^(\+|-)?\d{1,12}(\.\d{0,2})?$/")
      */
     private string $CuotaRecargoEquivalencia;
 
