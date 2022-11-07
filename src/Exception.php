@@ -3,15 +3,15 @@
 namespace APM\TicketBAIBundle\Exception;
 
 /**
- * Class for InvalidFormatException.
+ * Class for InvalidDataException.
  *
- * Exception thrown when invalid data format is provided by the user.
+ * Exception thrown when invalid data is provided by the user.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class InvalidFormatException extends \Exception {}
+class InvalidDataException extends \Exception {}
 
 /**
  * Class for InvalidSignatureException.
