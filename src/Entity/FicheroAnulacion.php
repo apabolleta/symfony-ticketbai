@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\Entity\IDFactura;
 use APM\TicketBAIBundle\Entity\HuellaTBAI;
 
 /**
- * Class to define TicketBAI system 'FicheroAnulacion' structure.
+ * Class to define TicketBAI 'FicheroAnulacion' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

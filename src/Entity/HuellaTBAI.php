@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\Entity\EncadenamientoFacturaAnterior;
 use APM\TicketBAIBundle\Entity\SoftwareTicketBAI;
 
 /**
- * Class to define TicketBAI system 'HuellaTBAI' structure.
+ * Class to define TicketBAI 'HuellaTBAI' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

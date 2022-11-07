@@ -5,7 +5,7 @@ namespace APM\TicketBAIBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class to define TicketBAI system 'IDDetalleFactura' structure.
+ * Class to define TicketBAI 'IDDetalleFactura' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

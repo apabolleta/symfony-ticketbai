@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\Entity\PrestacionServicios;
 use APM\TicketBAIBundle\Entity\Entrega;
 
 /**
- * Class to define TicketBAI system 'DesgloseTipoOperacion' structure.
+ * Class to define TicketBAI 'DesgloseTipoOperacion' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\Entity\FacturaRectificativa;
 use APM\TicketBAIBundle\Entity\IDFacturaRectificadaSustituida;
 
 /**
- * Class to define TicketBAI system 'CabeceraFactura' structure.
+ * Class to define TicketBAI 'CabeceraFactura' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

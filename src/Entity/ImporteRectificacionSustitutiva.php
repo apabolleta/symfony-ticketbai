@@ -5,7 +5,7 @@ namespace APM\TicketBAIBundle\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class to define TicketBAI system 'ImporteRectificacionSustitutiva' structure.
+ * Class to define TicketBAI 'ImporteRectificacionSustitutiva' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\Entity\Emisor;
 use APM\TicketBAIBundle\Entity\CabeceraFactura;
 
 /**
- * Class to define TicketBAI system 'IDFactura' structure.
+ * Class to define TicketBAI 'IDFactura' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

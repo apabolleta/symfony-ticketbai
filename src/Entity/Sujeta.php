@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\Entity\DetalleExenta;
 use APM\TicketBAIBundle\Entity\DetalleNoExenta;
 
 /**
- * Class to define TicketBAI system 'Sujeta' structure.
+ * Class to define TicketBAI 'Sujeta' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

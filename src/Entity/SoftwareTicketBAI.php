@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use APM\TicketBAIBundle\Entity\PersonaOEntidadDesarrolladora;
 
 /**
- * Class to define TicketBAI system 'SoftwareTicketBAI' structure.
+ * Class to define TicketBAI 'SoftwareTicketBAI' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

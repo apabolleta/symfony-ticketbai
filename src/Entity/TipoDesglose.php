@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\Entity\DesgloseFactura;
 use APM\TicketBAIBundle\Entity\DesgloseTipoOperacion;
 
 /**
- * Class to define TicketBAI system 'TipoDesglose' structure.
+ * Class to define TicketBAI 'TipoDesglose' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

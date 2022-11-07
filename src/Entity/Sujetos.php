@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\Entity\Emisor;
 use APM\TicketBAIBundle\Entity\IDDestinatario;
 
 /**
- * Class to define TicketBAI system 'Sujetos' structure.
+ * Class to define TicketBAI 'Sujetos' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

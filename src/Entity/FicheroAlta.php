@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\Factura;
 use APM\TicketBAIBundle\Entity\HuellaTBAI;
 
 /**
- * Class to define TicketBAI system 'FicheroAlta' structure.
+ * Class to define TicketBAI 'FicheroAlta' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

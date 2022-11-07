@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\TicketBAI;
 use APM\TicketBAIBundle\Entity\DetalleIVA;
 
 /**
- * Class to define TicketBAI system 'DetalleNoExenta' structure.
+ * Class to define TicketBAI 'DetalleNoExenta' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\Entity\IDDetalleFactura;
 use APM\TicketBAIBundle\Entity\IDClave;
 
 /**
- * Class to define TicketBAI system 'DatosFactura' structure.
+ * Class to define TicketBAI 'DatosFactura' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

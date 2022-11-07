@@ -8,7 +8,7 @@ use Symfony\Component\Validator\GroupSequenceProviderInterface;
 use APM\TicketBAIBundle\Entity\IDOtro;
 
 /**
- * Class to define TicketBAI system 'PersonaOEntidadDesarrolladora' structure.
+ * Class to define TicketBAI 'PersonaOEntidadDesarrolladora' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

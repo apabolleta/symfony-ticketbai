@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\TicketBAI;
 use APM\TicketBAIBundle\Entity\ImporteRectificacionSustitutiva;
 
 /**
- * Class to define TicketBAI system 'FacturaRectificativa' structure.
+ * Class to define TicketBAI 'FacturaRectificativa' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

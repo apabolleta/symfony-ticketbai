@@ -8,7 +8,7 @@ use APM\TicketBAIBundle\Entity\Sujeta;
 use APM\TicketBAIBundle\Entity\DetalleNoSujeta;
 
 /**
- * Class to define TicketBAI system 'PrestacionServicios' structure.
+ * Class to define TicketBAI 'PrestacionServicios' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>

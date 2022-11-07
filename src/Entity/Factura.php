@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\Entity\DatosFactura;
 use APM\TicketBAIBundle\Entity\TipoDesglose;
 
 /**
- * Class to define TicketBAI system 'Factura' structure.
+ * Class to define TicketBAI 'Factura' structure.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
