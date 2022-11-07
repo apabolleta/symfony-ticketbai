@@ -2,7 +2,7 @@
 
 namespace APM\TicketBAIBundle\Tests\Entity;
 
-use APM\TicketBAIBundle\Tests\Entity\TestEntity;
+use APM\TicketBAIBundle\Tests\Entity\EntityValidationTestCase;
 use APM\TicketBAIBundle\Entity\FicheroAlta;
 use APM\TicketBAIBundle\Entity\Cabecera;
 use APM\TicketBAIBundle\Entity\Sujetos;
@@ -28,7 +28,7 @@ use APM\TicketBAIBundle\Entity\IDOtro;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-final class FicheroAltaTest extends TestEntity
+final class FicheroAltaTest extends EntityValidationTestCase
 {
     public function testValidFicheroAlta(): void
     {
