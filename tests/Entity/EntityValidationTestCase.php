@@ -7,15 +7,15 @@ use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
- * Class to define basic Entity test class.
+ * Class to create custom assertions for entity validation.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class TestEntity extends TestCase
+class EntityValidationTestCase extends TestCase
 {
-    protected static function getValidatorInterface(): ValidatorInterface
+    protected static function getValidator(): ValidatorInterface
     {
         return Validation::createValidatorBuilder()
             ->enableAnnotationMapping(true)
@@ -25,7 +25,7 @@ class TestEntity extends TestCase
 
     public static function assertIsValid($value, ...$args): void
     {
-        $validator = self::getValidatorInterface();
+        $validator = self::getValidator();
 
         $violations = $validator->validate($value, ...$args);
 
@@ -34,7 +34,7 @@ class TestEntity extends TestCase
 
     public static function assertIsNotValid($value, ...$args): void
     {
-        $validator = self::getValidatorInterface();
+        $validator = self::getValidator();
 
         $violations = $validator->validate($value, ...$args);
 
@@ -43,7 +43,7 @@ class TestEntity extends TestCase
 
     public static function assertCountConstraintViolations($expectedCount, $value, ...$args): void
     {
-        $validator = self::getValidatorInterface();
+        $validator = self::getValidator();
 
         $violations = $validator->validate($value, ...$args);
 
