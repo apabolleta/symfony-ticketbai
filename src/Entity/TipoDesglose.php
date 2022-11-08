@@ -28,8 +28,8 @@ class TipoDesglose implements GroupSequenceProviderInterface
      * @access  private
      * @var     DesgloseFactura
      *
-     * @Assert\IsNull(groups={"isInternational"})
-     * @Assert\NotNull(groups={"isNational"})
+     * @Assert\IsNull(groups={"IsInternational"})
+     * @Assert\NotNull(groups={"IsNational"})
      * @Assert\Type(type=DesgloseFactura::class)
      * @Assert\Valid
      */
@@ -44,8 +44,8 @@ class TipoDesglose implements GroupSequenceProviderInterface
      * @access  private
      * @var     DesgloseTipoOperacion
      *
-     * @Assert\IsNull(groups={"isNational"})
-     * @Assert\NotNull(groups={"isInternational"})
+     * @Assert\IsNull(groups={"IsNational"})
+     * @Assert\NotNull(groups={"IsInternational"})
      * @Assert\Type(type=DesgloseTipoOperacion::class)
      * @Assert\Valid
      */
@@ -77,9 +77,9 @@ class TipoDesglose implements GroupSequenceProviderInterface
 
     public function getGroupSequence()
     {
-        return [
+        return [[
             'TipoDesglose',
-            isset($this->DesgloseFactura) ? 'isNational' : 'isInternational'
-        ];
+            isset($this->DesgloseFactura) ? 'IsNational' : 'IsInternational'
+        ]];
     }
 }

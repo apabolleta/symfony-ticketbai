@@ -38,7 +38,7 @@ class CabeceraFactura
      * @Assert\Length(
      *      max = 20
      * )
-     * @Assert\Regex("/^[-0123456789ABCDEFGHJKLMNPQRSTUVXYZ]{1,20}$/", groups={"strict"})
+     * @Assert\Regex("/^[-0123456789ABCDEFGHJKLMNPQRSTUVXYZ]{1,20}$/", groups={"Strict"})
      */
     private string $SerieFactura;
 
@@ -59,7 +59,7 @@ class CabeceraFactura
      * @Assert\Length(
      *      max = 20
      * )
-     * @Assert\Regex("/^\d{1,20}$/", groups={"strict"})
+     * @Assert\Regex("/^\d{1,20}$/", groups={"Strict"})
      */
     private string $NumFactura;
 

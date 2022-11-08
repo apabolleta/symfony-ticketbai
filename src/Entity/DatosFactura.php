@@ -59,7 +59,7 @@ class DatosFactura
      * @access  private
      * @var     array
      *
-     * @Assert\NotNull(groups={"gipuzkoa"})
+     * @Assert\NotNull(groups={"Gipuzkoa"})
      * @Assert\Type(type="array")
      * @Assert\Count(
      *      min = 1,

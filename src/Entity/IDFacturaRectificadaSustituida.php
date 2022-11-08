@@ -26,7 +26,7 @@ class IDFacturaRectificadaSustituida
      * @Assert\Length(
      *      max = 20
      * )
-     * @Assert\Regex("/^[-0123456789ABCDEFGHJKLMNPQRSTUVXYZ]{1,20}$/", groups={"strict"})
+     * @Assert\Regex("/^[-0123456789ABCDEFGHJKLMNPQRSTUVXYZ]{1,20}$/", groups={"Strict"})
      */
     private string $SerieFactura;
 
@@ -41,7 +41,7 @@ class IDFacturaRectificadaSustituida
      *
      * @Assert\NotBlank
      * @Assert\Type(type="string")
-     * @Assert\Type(type="digit", groups={"strict"})
+     * @Assert\Type(type="digit", groups={"Strict"})
      * @Assert\Length(
      *      max = 20
      * )

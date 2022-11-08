@@ -28,8 +28,8 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @access  private
      * @var     string
      *
-     * @Assert\IsNull(groups={"isInternational"})
-     * @Assert\NotBlank(groups={"isNational"})
+     * @Assert\IsNull(groups={"IsInternational"})
+     * @Assert\NotBlank(groups={"IsNational"})
      * @Assert\Type(type="string")
      * @Assert\Length(
      *      min = 9,
@@ -46,8 +46,8 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @access  private
      * @var     IDOtro
      *
-     * @Assert\IsNull(groups={"isNational"})
-     * @Assert\NotNull(groups={"isInternational"})
+     * @Assert\IsNull(groups={"IsNational"})
+     * @Assert\NotNull(groups={"IsInternational"})
      * @Assert\Type(type=IDOtro::class)
      * @Assert\Valid
      */
@@ -79,7 +79,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @access  private
      * @var     string
      *
-     * @Assert\NotBlank(groups={"gipuzkoa"})
+     * @Assert\NotBlank(groups={"Gipuzkoa"})
      * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 20
@@ -96,7 +96,7 @@ class IDDestinatario implements GroupSequenceProviderInterface
      * @access  private
      * @var     string
      *
-     * @Assert\NotBlank(groups={"gipuzkoa"})
+     * @Assert\NotBlank(groups={"Gipuzkoa"})
      * @Assert\Type(type="string")
      * @Assert\Length(
      *      max = 250
@@ -166,9 +166,9 @@ class IDDestinatario implements GroupSequenceProviderInterface
 
     public function getGroupSequence()
     {
-        return [
+        return [[
             'IDDestinatario',
-            isset($this->NIF) ? 'isNational' : 'isInternational'
-        ];
+            isset($this->NIF) ? 'IsNational' : 'IsInternational'
+        ]];
     }
 }
