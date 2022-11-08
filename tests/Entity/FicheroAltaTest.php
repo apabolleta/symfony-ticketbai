@@ -8,21 +8,32 @@ use APM\TicketBAIBundle\Entity\Cabecera;
 use APM\TicketBAIBundle\Entity\Sujetos;
 use APM\TicketBAIBundle\Entity\Emisor;
 use APM\TicketBAIBundle\Entity\IDDestinatario;
+use APM\TicketBAIBundle\Entity\IDOtro;
 use APM\TicketBAIBundle\Entity\Factura;
 use APM\TicketBAIBundle\Entity\CabeceraFactura;
+use APM\TicketBAIBundle\Entity\FacturaRectificativa;
+use APM\TicketBAIBundle\Entity\ImporteRectificacionSustitutiva;
+use APM\TicketBAIBundle\Entity\IDFacturaRectificadaSustituida;
 use APM\TicketBAIBundle\Entity\DatosFactura;
-use APM\TicketBAIBundle\Entity\TipoDesglose;
 use APM\TicketBAIBundle\Entity\IDDetalleFactura;
 use APM\TicketBAIBundle\Entity\IDClave;
+use APM\TicketBAIBundle\Entity\TipoDesglose;
 use APM\TicketBAIBundle\Entity\DesgloseFactura;
+use APM\TicketBAIBundle\Entity\Sujeta;
+use APM\TicketBAIBundle\Entity\DetalleExenta;
+use APM\TicketBAIBundle\Entity\DetalleNoExenta;
+use APM\TicketBAIBundle\Entity\DetalleIVA;
 use APM\TicketBAIBundle\Entity\DetalleNoSujeta;
+use APM\TicketBAIBundle\Entity\DesgloseTipoOperacion;
+use APM\TicketBAIBundle\Entity\PrestacionServicios;
+use APM\TicketBAIBundle\Entity\Entrega;
 use APM\TicketBAIBundle\Entity\HuellaTBAI;
+use APM\TicketBAIBundle\Entity\EncadenamientoFacturaAnterior;
 use APM\TicketBAIBundle\Entity\SoftwareTicketBAI;
 use APM\TicketBAIBundle\Entity\PersonaOEntidadDesarrolladora;
-use APM\TicketBAIBundle\Entity\IDOtro;
 
 /**
- * Class to perform TicketBAI system 'FicheroAlta' structure tests.
+ * Class to perform TicketBAI 'FicheroAlta' structure tests.
  *
  * @package  apabolleta/ticketbai-bundle
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
