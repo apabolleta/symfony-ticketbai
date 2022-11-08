@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\Entity\PersonaOEntidadDesarrolladora;
 /**
  * Class to define TicketBAI 'SoftwareTicketBAI' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

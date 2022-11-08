@@ -35,7 +35,7 @@ use APM\TicketBAIBundle\Entity\PersonaOEntidadDesarrolladora;
 /**
  * Class to perform TicketBAI 'FicheroAlta' structure tests.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

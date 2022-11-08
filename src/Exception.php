@@ -7,7 +7,7 @@ namespace APM\TicketBAIBundle\Exception;
  *
  * Exception thrown when invalid data is provided by the user.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
@@ -18,7 +18,7 @@ class InvalidDataException extends \Exception {}
  *
  * Exception thrown when signature check fails.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

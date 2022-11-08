@@ -11,7 +11,7 @@ use APM\TicketBAIBundle\Entity\TipoDesglose;
 /**
  * Class to define TicketBAI 'Factura' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

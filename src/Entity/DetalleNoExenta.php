@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\DetalleIVA;
 /**
  * Class to define TicketBAI 'DetalleNoExenta' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

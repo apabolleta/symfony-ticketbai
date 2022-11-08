@@ -11,7 +11,7 @@ use APM\TicketBAIBundle\Entity\HuellaTBAI;
 /**
  * Class to define TicketBAI 'FicheroAnulacion' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

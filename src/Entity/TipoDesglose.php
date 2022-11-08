@@ -11,7 +11,7 @@ use APM\TicketBAIBundle\Entity\DesgloseTipoOperacion;
 /**
  * Class to define TicketBAI 'TipoDesglose' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  * @Assert\GroupSequenceProvider

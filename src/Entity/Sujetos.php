@@ -11,7 +11,7 @@ use APM\TicketBAIBundle\Entity\IDDestinatario;
 /**
  * Class to define TicketBAI 'Sujetos' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

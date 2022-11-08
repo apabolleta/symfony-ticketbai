@@ -5,7 +5,7 @@ namespace APM\TicketBAIBundle;
 /**
  * Class to handle TicketBAI system operation.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

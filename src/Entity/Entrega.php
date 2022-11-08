@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\DetalleNoSujeta;
 /**
  * Class to define TicketBAI 'Entrega' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

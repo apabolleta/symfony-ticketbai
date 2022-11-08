@@ -11,7 +11,7 @@ use APM\TicketBAIBundle\Entity\IDFacturaRectificadaSustituida;
 /**
  * Class to define TicketBAI 'CabeceraFactura' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

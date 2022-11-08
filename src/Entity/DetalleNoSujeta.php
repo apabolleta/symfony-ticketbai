@@ -9,7 +9,7 @@ use APM\TicketBAIBundle\TicketBAI;
 /**
  * Class to define TicketBAI 'DetalleNoSujeta' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

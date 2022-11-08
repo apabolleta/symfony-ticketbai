@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\ImporteRectificacionSustitutiva;
 /**
  * Class to define TicketBAI 'FacturaRectificativa' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

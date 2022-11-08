@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\CabeceraFactura;
 /**
  * Class to define TicketBAI 'IDFactura' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

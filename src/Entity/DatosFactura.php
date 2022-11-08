@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\IDClave;
 /**
  * Class to define TicketBAI 'DatosFactura' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */

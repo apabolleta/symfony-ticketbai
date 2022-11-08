@@ -10,7 +10,7 @@ use APM\TicketBAIBundle\Entity\DetalleNoExenta;
 /**
  * Class to define TicketBAI 'Sujeta' structure.
  *
- * @package  apabolleta/ticketbai-bundle
+ * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
