@@ -33,7 +33,7 @@ use APM\TicketBAIBundle\Entity\SoftwareTicketBAI;
 use APM\TicketBAIBundle\Entity\PersonaOEntidadDesarrolladora;
 
 /**
- * Class to perform TicketBAI 'FicheroAlta' structure tests.
+ * Class to perform TicketBAI 'FicheroAlta' structure validation tests.
  *
  * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
@@ -68,24 +68,7 @@ final class FicheroAltaTest extends EntityValidationTestCase
                     ->setDatosFactura(
                         (new DatosFactura())
                             ->setDescripcionFactura("Descripción general de las operaciones.")
-                            ->setDetallesFactura([
-                                (new IDDetalleFactura())
-                                    ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
-                                    ->setCantidad("1,00")
-                                    ->setImporteUnitario("1,00")
-                                    ->setImporteTotal("1,00"),
-                                (new IDDetalleFactura())
-                                    ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
-                                    ->setCantidad("1,00")
-                                    ->setImporteUnitario("1,00")
-                                    ->setImporteTotal("1,00"),
-                                (new IDDetalleFactura())
-                                    ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
-                                    ->setCantidad("1,00")
-                                    ->setImporteUnitario("1,00")
-                                    ->setImporteTotal("1,00")
-                            ])
-                            ->setImporteTotalFactura("3,00")
+                            ->setImporteTotalFactura("3.00")
                             ->setClaves([
                                 (new IDClave())->setClaveRegimenIVAOperacionTranscendencia("01")
                             ])
@@ -97,7 +80,7 @@ final class FicheroAltaTest extends EntityValidationTestCase
                                     ->setNoSujeta([
                                         (new DetalleNoSujeta())
                                             ->setCausa("OT")
-                                            ->setImporte("1,00")
+                                            ->setImporte("1.00")
                                     ])
                             )
                     )
@@ -111,24 +94,18 @@ final class FicheroAltaTest extends EntityValidationTestCase
                                 (new PersonaOEntidadDesarrolladora())
                                     ->setNIF("12345678A")
                             )
-                            ->setNombre("Symfony Bundle for TicketBAI system")
+                            ->setNombre("apabolleta/symfony-ticketbai")
                             ->setVersion("0.0.1")
                     )
             );
 
         self::assertIsValid($ficheroAlta);
-    }
 
-    public function testNotValidFicheroAlta(): void
-    {
         $ficheroAlta = new FicheroAlta();
-
-        self::assertIsNotValid($ficheroAlta);
-
         $ficheroAlta
             ->setCabecera(
                 (new Cabecera())
-                    ->setIDVersionTBAI("v1.2")
+                    ->setIDVersionTBAI("1.2")
             )
             ->setSujetos(
                 (new Sujetos())
@@ -138,18 +115,33 @@ final class FicheroAltaTest extends EntityValidationTestCase
                             ->setApellidosNombreRazonSocial("Apellidos, Nombre")
                     )
                     ->setDestinatarios([
-                        (new IDDestinatario()),
-                        (new IDDestinatario()),
                         (new IDDestinatario())
+                            ->setIDOtro(
+                                (new IDOtro())
+                                    ->setCodigoPais("BR")
+                                    ->setIDType("03")
+                                    ->setID("12345")
+                            )
+                            ->setApellidosNombreRazonSocial("Razón Social A S.L.")
+                            ->setCodigoPostal("12345")
+                            ->setDireccion("Avda. Nombre Avenida, 50"),
+                        (new IDDestinatario())
+                            ->setNIF("12345678A")
+                            ->setApellidosNombreRazonSocial("Razón Social B S.L.")
+                            ->setCodigoPostal("12345")
+                            ->setDireccion("Avda. Nombre Avenida, 60")
                     ])
+                    ->setVariosDestinatarios("S")
+                    ->setEmitidaPorTercerosODestinatario("N")
             )
             ->setFactura(
                 (new Factura())
                     ->setCabeceraFactura(
                         (new CabeceraFactura())
+                            ->setSerieFactura("S-0001-00")
                             ->setNumFactura("0001")
-                            ->setFechaExpedicionFactura("2022-1-1")
-                            ->setHoraExpedicionFactura("10:00:00,00")
+                            ->setFechaExpedicionFactura("01-01-2022")
+                            ->setHoraExpedicionFactura("10:00:00")
                     )
                     ->setDatosFactura(
                         (new DatosFactura())
@@ -157,46 +149,90 @@ final class FicheroAltaTest extends EntityValidationTestCase
                             ->setDetallesFactura([
                                 (new IDDetalleFactura())
                                     ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
-                                    ->setCantidad("1,0000")
-                                    ->setImporteUnitario("1,0000")
-                                    ->setImporteTotal("1,0000"),
+                                    ->setCantidad("1.0000")
+                                    ->setImporteUnitario("1.0000")
+                                    ->setImporteTotal("1.00"),
                                 (new IDDetalleFactura())
                                     ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
-                                    ->setCantidad("1,0000")
-                                    ->setImporteUnitario("1,0000")
-                                    ->setImporteTotal("1,0000"),
+                                    ->setCantidad("1.0000")
+                                    ->setImporteUnitario("1.0000")
+                                    ->setImporteTotal("1.00"),
                                 (new IDDetalleFactura())
                                     ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
-                                    ->setCantidad("1,0000")
-                                    ->setImporteUnitario("1,0000")
-                                    ->setImporteTotal("1,0000")
+                                    ->setCantidad("1.0000")
+                                    ->setImporteUnitario("1.0000")
+                                    ->setImporteTotal("1.00")
                             ])
-                            ->setImporteTotalFactura("3,00")
+                            ->setImporteTotalFactura("3.00")
                             ->setClaves([
-                                (new IDClave())->setClaveRegimenIVAOperacionTranscendencia("01")
+                                (new IDClave())->setClaveRegimenIVAOperacionTranscendencia("01"),
+                                (new IDClave())->setClaveRegimenIVAOperacionTranscendencia("02"),
+                                (new IDClave())->setClaveRegimenIVAOperacionTranscendencia("03")
                             ])
                     )
                     ->setTipoDesglose(
                         (new TipoDesglose())
                             ->setDesgloseFactura(
                                 (new DesgloseFactura())
-                                    ->setNoSujeta([])
+                                    ->setSujeta(
+                                        (new Sujeta())
+                                            ->setExenta([
+                                                (new DetalleExenta())
+                                                    ->setCausaExencion("E1")
+                                                    ->setBaseImponible("1.00"),
+                                                (new DetalleExenta())
+                                                    ->setCausaExencion("E2")
+                                                    ->setBaseImponible("1.00")
+                                            ])
+                                            ->setNoExenta([
+                                                (new DetalleNoExenta())
+                                                    ->setTipoNoExenta("S1")
+                                                    ->setDesgloseIVA([
+                                                        (new DetalleIVA())->setBaseImponible("1.00"),
+                                                        (new DetalleIVA())->setBaseImponible("1.00"),
+                                                        (new DetalleIVA())->setBaseImponible("1.00")
+                                                    ])
+                                            ])
+                                    )
+                                    ->setNoSujeta([
+                                        (new DetalleNoSujeta())
+                                            ->setCausa("OT")
+                                            ->setImporte("1.00"),
+                                        (new DetalleNoSujeta())
+                                            ->setCausa("RL")
+                                            ->setImporte("1.00")
+                                    ])
                             )
                     )
             )
             ->setHuellaTBAI(
                 (new HuellaTBAI())
+                    ->setEncadenamientoFacturaAnterior(
+                        (new EncadenamientoFacturaAnterior())
+                            ->setNumFacturaAnterior("0000")
+                            ->setFechaExpedicionFacturaAnterior("01-01-2022")
+                            ->setSignatureValueFirmaFacturaAnterior(\str_repeat("a", 100))
+                    )
                     ->setSoftwareTicketBAI(
                         (new SoftwareTicketBAI())
                             ->setLicenciaTBAI("1122334455")
                             ->setPersonaOEntidadDesarrolladora(
                                 (new PersonaOEntidadDesarrolladora())
                                     ->setNIF("12345678A")
-                                    ->setIDOtro(new IDOtro())
                             )
+                            ->setNombre("apabolleta/symfony-ticketbai")
+                            ->setVersion("0.0.1")
                     )
+                    ->setNumSerieDispositivo("1122334455")
             );
 
-        self::assertCountConstraintViolations(16, $ficheroAlta);
+        self::assertIsValid($ficheroAlta, null, ['Default', 'Gipuzkoa', 'Strict']);
+    }
+
+    public function testNotValidFicheroAlta(): void
+    {
+        $ficheroAlta = new FicheroAlta();
+
+        self::assertIsNotValid($ficheroAlta);
     }
 }
