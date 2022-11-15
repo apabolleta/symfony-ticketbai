@@ -3,15 +3,15 @@
 namespace APM\TicketBAIBundle\Exception;
 
 /**
- * Class for InvalidDataException.
+ * Class for ValidationFailedException.
  *
- * Exception thrown when invalid data is provided by the user.
+ * Exception thrown when validation fails.
  *
  * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class InvalidDataException extends \Exception {}
+class ValidationFailedException extends \Exception {}
 
 /**
  * Class for InvalidSignatureException.
