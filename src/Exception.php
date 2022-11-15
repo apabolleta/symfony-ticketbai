@@ -14,7 +14,7 @@ namespace APM\TicketBAIBundle\Exception;
 class ValidationFailedException extends \Exception {}
 
 /**
- * Class for InvalidSignatureException.
+ * Class for SignatureCheckFailedException.
  *
  * Exception thrown when signature check fails.
  *
@@ -22,4 +22,4 @@ class ValidationFailedException extends \Exception {}
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class InvalidSignatureException extends \Exception {}
+class SignatureCheckFailedException extends \Exception {}
