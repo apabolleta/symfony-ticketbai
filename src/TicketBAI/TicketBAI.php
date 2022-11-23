@@ -2,6 +2,17 @@
 
 namespace APM\TicketBAIBundle\TicketBAI;
 
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
+use APM\TicketBAIBundle\Exception\ValidationFailedException;
+use APM\TicketBAIBundle\TicketBAI\Alta\FicheroAlta;
+use APM\TicketBAIBundle\TicketBAI\Anulacion\FicheroAnulacion;
+use APM\TicketBAIBundle\TicketBAI\Response;
+
 /**
  * Class to handle TicketBAI system operation.
  *
@@ -105,4 +116,102 @@ class TicketBAI
         "OT",  # No sujeto por el artículo 7 de la Ley del IVA. Otros supuestos de no sujeción.
         "RL",  # No sujeto por reglas de localización.
     ];
+
+    const Alta_CodigosResultado = [
+        "00",  # Recibido. El fichero de alta TicketBAI se ha recibido.
+        "01",  # Rechazado. El fichero de alta TicketBAI contiene errores que impiden su recepción.
+    ];
+
+    const Anulacion_CodigosResultado = [
+        "00",  # Recibido. El fichero de anulación TicketBAI se ha recibido.
+        "01",  # Rechazado. El fichero de anulación TicketBAI contiene errores que impiden su recepción.
+    ];
+
+    const ENV_ARABA    = "Araba";
+    const ENV_BIZKAIA  = "Bizkaia";
+    const ENV_GIPUZKOA = "Gipuzkoa";
+
+    const ENV_VALUES = [
+        self::ENV_ARABA,
+        self::ENV_BIZKAIA,
+        self::ENV_GIPUZKOA
+    ];
+
+    const XML_VERSION        = "1.0";
+    const XML_ENCODING       = "UTF-8";
+    const XML_ROOT_NODE_NAME = "T:TicketBai";
+
+    private $validator;
+    private $serializer;
+    private $signer;
+
+    private $validator_context;
+    private $serializer_context;
+    private $signer_context;
+
+    public function __construct(string $env = null, bool $strict = false)
+    {
+        $this->validator = Validation::createValidatorBuilder()
+            ->enableAnnotationMapping(true)
+            ->addDefaultDoctrineAnnotationReader()
+            ->getValidator();
+
+        $this->validator_context = ['Default'];
+
+        if ($env && !\in_array($env, self::ENV_VALUES)) {
+            throw new \InvalidArgumentException('The $env argument contains an invalid value.');
+        }
+
+        if (null != $env) {
+            \array_push($this->validator_context, $env);
+        }
+
+        if (true == $strict) {
+            \array_push($this->validator_context, 'Strict');
+        }
+
+        $encoders = [new XmlEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+
+        $this->serializer = new Serializer($normalizers, $encoders);
+
+        $this->serializer_context = [XmlEncoder::FORMAT_OUTPUT => true,
+                                     XmlEncoder::VERSION => self::XML_VERSION,
+                                     XmlEncoder::ENCODING => self::XML_ENCODING,
+                                     XmlEncoder::ROOT_NODE_NAME => self::XML_ROOT_NODE_NAME];
+    }
+
+    public function alta(FicheroAlta $ficheroAlta): Response
+    {
+        $violations = $this->validator->validate($ficheroAlta, null, $this->validator_context);
+
+        if (count($violations) > 0) {
+            throw new ValidationFailedException;
+        }
+
+        # TODO: Sign
+
+        # TODO: Encode to XML
+
+        # TODO: Send
+
+        # TODO: Return Response
+    }
+
+    public function anulacion(FicheroAnulacion $ficheroAnulacion): Response
+    {
+        $violations = $this->validator->validate($ficheroAnulacion, null, $this->validator_context);
+
+        if (count($violations) > 0) {
+            throw new ValidationFailedException;
+        }
+
+        # TODO: Sign
+
+        # TODO: Encode to XML
+
+        # TODO: Send
+
+        # TODO: Return Response
+    }
 }
