@@ -2,6 +2,8 @@
 
 namespace APM\TicketBAIBundle;
 
+use APM\TicketBAIBundle\StructureInterface;
+
 /**
  * Interface definition for TicketBAIBundle Response.
  *
@@ -9,4 +11,4 @@ namespace APM\TicketBAIBundle;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-interface ResponseInterface {}
+interface ResponseInterface extends StructureInterface {}

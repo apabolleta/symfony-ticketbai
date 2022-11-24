@@ -2,13 +2,11 @@
 
 namespace APM\TicketBAIBundle;
 
-use APM\TicketBAIBundle\StructureInterface;
-
 /**
- * Interface definition for TicketBAIBundle Request.
+ * Interface definition for TicketBAIBundle Structure.
  *
  * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-interface RequestInterface extends StructureInterface {}
+interface StructureInterface {}
