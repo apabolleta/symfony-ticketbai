@@ -4,11 +4,10 @@ namespace APM\TicketBAIBundle\TicketBAI;
 
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 use APM\TicketBAIBundle\Exception\ValidationFailedException;
+use APM\TicketBAIBundle\Serializer\StructureNormalizer;
 use APM\TicketBAIBundle\TicketBAI\Alta\FicheroAlta;
 use APM\TicketBAIBundle\TicketBAI\Anulacion\FicheroAnulacion;
 use APM\TicketBAIBundle\TicketBAI\Response;
@@ -139,7 +138,18 @@ class TicketBAI
 
     const XML_VERSION        = "1.0";
     const XML_ENCODING       = "UTF-8";
-    const XML_ROOT_NODE_NAME = "T:TicketBai";
+
+    const XML_XMLNS_T        = "T";
+    const XML_XMLNS_T_URI    = "urn:ticketbai:emision";
+
+    const XML_XMLNS_DS       = "ds";
+    const XML_XMLNS_DS_URI   = "http://www.w3.org/2000/09/xmldsig#";
+
+    const XML_XMLNS_XSI      = "xsi";
+    const XML_XMLNS_XSI_URI  = "http://www.w3.org/2001/XMLSchema-instance";
+    const XML_XMLNS_XSI_SL   = "urn:ticketbai:emision ticketBaiV1-2-1.xsd";
+
+    const XML_ROOT_NODE_NAME = self::XML_XMLNS_T . ":TicketBai";
 
     private $validator;
     private $serializer;
@@ -171,7 +181,7 @@ class TicketBAI
         }
 
         $encoders = [new XmlEncoder()];
-        $normalizers = [new ObjectNormalizer()];
+        $normalizers = [new StructureNormalizer()];
 
         $this->serializer = new Serializer($normalizers, $encoders);
 
@@ -189,9 +199,9 @@ class TicketBAI
             throw new ValidationFailedException;
         }
 
-        # TODO: Sign
+        $xml = $this->serializer->serialize($ficheroAlta, 'xml', $this->serializer_context);
 
-        # TODO: Encode to XML
+        # TODO: Sign
 
         # TODO: Send
 
