@@ -78,7 +78,7 @@ class StructureNormalizer implements NormalizerInterface
                     break;
 
                 case "NULL":
-                    if (true == $context[self::SKIP_NULL_VALUES]) continue;
+                    if (true == $context[self::SKIP_NULL_VALUES]) break;
 
                 default:
                     $normalized[$name] = (string) $value;
