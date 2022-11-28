@@ -11,6 +11,19 @@ namespace APM\TicketBAIBundle;
  */
 interface SignerInterface
 {
-    public function sign();
-    public function verify();
+    /**
+     * Computes the signature and returns signed data.
+     *
+     * @param   string  $data  Unsigned data.
+     * @return  string         Signed data.
+     */
+    public function sign(string $data): string;
+
+    /**
+     * Extracts and checks signature of signed data.
+     *
+     * @param   string  $data  Signed data.
+     * @return  bool           Returns true if the signature is correct. Otherwise, returns false.
+     */
+    public function verify(string $data): bool;
 }
