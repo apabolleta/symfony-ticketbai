@@ -136,20 +136,23 @@ class TicketBAI
         self::ENV_GIPUZKOA
     ];
 
-    const XML_VERSION        = "1.0";
-    const XML_ENCODING       = "UTF-8";
+    const XML_VERSION  = "1.0";
+    const XML_ENCODING = "UTF-8";
 
-    const XML_XMLNS_T        = "T";
-    const XML_XMLNS_T_URI    = "urn:ticketbai:emision";
+    const XML_NS_T               = "T";
+    const XML_NS_T_URI_ALTA      = "urn:ticketbai:emision";
+    const XML_NS_T_URI_ANULACION = "urn:ticketbai:anulacion";
 
-    const XML_XMLNS_DS       = "ds";
-    const XML_XMLNS_DS_URI   = "http://www.w3.org/2000/09/xmldsig#";
+    const XML_NS_DS     = "ds";
+    const XML_NS_DS_URI = "http://www.w3.org/2000/09/xmldsig#";
 
-    const XML_XMLNS_XSI      = "xsi";
-    const XML_XMLNS_XSI_URI  = "http://www.w3.org/2001/XMLSchema-instance";
-    const XML_XMLNS_XSI_SL   = "urn:ticketbai:emision ticketBaiV1-2-1.xsd";
+    const XML_NS_XSI              = "xsi";
+    const XML_NS_XSI_URI          = "http://www.w3.org/2001/XMLSchema-instance";
+    const XML_NS_XSI_SL_ALTA      = "urn:ticketbai:emision ticketBaiV1-2-1.xsd";
+    const XML_NS_XSI_SL_ANULACION = "urn:ticketbai:anulacion Anula_ticketBaiV1-2-1.xsd";
 
-    const XML_ROOT_NODE_NAME = self::XML_XMLNS_T . ":TicketBai";
+    const XML_ROOT_NODE_NAME_ALTA      = self::XML_NS_T . ":TicketBai";
+    const XML_ROOT_NODE_NAME_ANULACION = self::XML_NS_T . ":AnulaTicketBai";
 
     private $validator;
     private $serializer;
@@ -187,8 +190,7 @@ class TicketBAI
 
         $this->serializer_context = [XmlEncoder::FORMAT_OUTPUT => true,
                                      XmlEncoder::VERSION => self::XML_VERSION,
-                                     XmlEncoder::ENCODING => self::XML_ENCODING,
-                                     XmlEncoder::ROOT_NODE_NAME => self::XML_ROOT_NODE_NAME];
+                                     XmlEncoder::ENCODING => self::XML_ENCODING];
     }
 
     public function alta(FicheroAlta $ficheroAlta): Response
@@ -199,7 +201,17 @@ class TicketBAI
             throw new ValidationFailedException;
         }
 
-        $xml = $this->serializer->serialize($ficheroAlta, 'xml', $this->serializer_context);
+        $serializer_context = \array_merge($this->serializer_context, [XmlEncoder::ROOT_NODE_NAME => self::XML_ROOT_NODE_NAME_ALTA]);
+
+        $arr = $this->serializer->normalize($ficheroAlta, null, $serializer_context);
+
+        $xml = $this->serializer->encode([
+            '@xmlns:' . self::XML_NS_T => self::XML_NS_T_URI_ALTA,
+            '@xmlns:' . self::XML_NS_DS => self::XML_NS_DS_URI,
+            '@xmlns:' . self::XML_NS_XSI => self::XML_NS_XSI_URI,
+            '@' . self::XML_NS_XSI . ":schemaLocation" => self::XML_NS_XSI_SL_ALTA,
+            '#' => $arr
+        ], 'xml', $serializer_context);
 
         # TODO: Sign
 
@@ -216,9 +228,19 @@ class TicketBAI
             throw new ValidationFailedException;
         }
 
-        # TODO: Sign
+        $serializer_context = \array_merge($this->serializer_context, [XmlEncoder::ROOT_NODE_NAME => self::XML_ROOT_NODE_NAME_ANULACION]);
 
-        # TODO: Encode to XML
+        $arr = $this->serializer->normalize($ficheroAnulacion, null, $serializer_context);
+
+        $xml = $this->serializer->encode([
+            '@xmlns:' . self::XML_NS_T => self::XML_NS_T_URI_ANULACION,
+            '@xmlns:' . self::XML_NS_DS => self::XML_NS_DS_URI,
+            '@xmlns:' . self::XML_NS_XSI => self::XML_NS_XSI_URI,
+            '@' . self::XML_NS_XSI . ":schemaLocation" => self::XML_NS_XSI_SL_ANULACION,
+            '#' => $arr
+        ], 'xml', $serializer_context);
+
+        # TODO: Sign
 
         # TODO: Send
 
