@@ -8,6 +8,7 @@ use Symfony\Component\Serializer\Serializer;
 
 use APM\TicketBAIBundle\Exception\ValidationFailedException;
 use APM\TicketBAIBundle\Serializer\StructureNormalizer;
+use APM\TicketBAIBundle\Signer\XMLSigner;
 use APM\TicketBAIBundle\TicketBAI\Alta\FicheroAlta;
 use APM\TicketBAIBundle\TicketBAI\Anulacion\FicheroAnulacion;
 use APM\TicketBAIBundle\TicketBAI\Response;
@@ -188,9 +189,18 @@ class TicketBAI
 
         $this->serializer = new Serializer($normalizers, $encoders);
 
-        $this->serializer_context = [XmlEncoder::FORMAT_OUTPUT => true,
-                                     XmlEncoder::VERSION => self::XML_VERSION,
-                                     XmlEncoder::ENCODING => self::XML_ENCODING];
+        $this->serializer_context = [
+            XmlEncoder::FORMAT_OUTPUT => true,
+            XmlEncoder::VERSION => self::XML_VERSION,
+            XmlEncoder::ENCODING => self::XML_ENCODING
+        ];
+
+        $this->signer = new XMLSigner();
+
+        $this->signer_context = [
+            XMLSigner::XML_NS_DS => self::XML_NS_DS,
+            XMLSigner::XML_NS_DS_URI => self::XML_NS_DS_URI
+        ];
     }
 
     public function alta(FicheroAlta $ficheroAlta): Response
@@ -213,7 +223,7 @@ class TicketBAI
             '#' => $arr
         ], 'xml', $serializer_context);
 
-        # TODO: Sign
+        $xml_signed = $this->signer->sign($xml, null, $this->signer_context);
 
         # TODO: Send
 
@@ -240,7 +250,7 @@ class TicketBAI
             '#' => $arr
         ], 'xml', $serializer_context);
 
-        # TODO: Sign
+        $xml_signed = $this->signer->sign($xml, null, $this->signer_context);
 
         # TODO: Send
 
