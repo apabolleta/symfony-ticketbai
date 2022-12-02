@@ -4,7 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use APM\TicketBAIBundle\RequestInterface;
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\Cabecera;
 use APM\TicketBAIBundle\TicketBAI\Alta\Sujetos;
 use APM\TicketBAIBundle\TicketBAI\Alta\Factura;
@@ -17,7 +17,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\HuellaTBAI;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class FicheroAlta implements RequestInterface
+class FicheroAlta implements StructureInterface
 {
     /**
      * Obligatorio:         Sí

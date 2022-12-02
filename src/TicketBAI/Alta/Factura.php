@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\CabeceraFactura;
 use APM\TicketBAIBundle\TicketBAI\Alta\DatosFactura;
 use APM\TicketBAIBundle\TicketBAI\Alta\TipoDesglose;
@@ -15,7 +16,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\TipoDesglose;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class Factura
+class Factura implements StructureInterface
 {
     /**
      * Obligatorio:     Sí

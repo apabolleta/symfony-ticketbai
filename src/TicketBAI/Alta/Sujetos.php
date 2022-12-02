@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\TicketBAI;
 use APM\TicketBAIBundle\TicketBAI\Alta\Emisor;
 use APM\TicketBAIBundle\TicketBAI\Alta\IDDestinatario;
@@ -15,7 +16,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\IDDestinatario;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class Sujetos
+class Sujetos implements StructureInterface
 {
     /**
      * Obligatorio:     Sí

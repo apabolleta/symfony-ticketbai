@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\TicketBAI;
 use APM\TicketBAIBundle\TicketBAI\Alta\ImporteRectificacionSustitutiva;
 
@@ -14,7 +15,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\ImporteRectificacionSustitutiva;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class FacturaRectificativa
+class FacturaRectificativa implements StructureInterface
 {
     /**
      * Código que identifica el tipo de factura rectificativa.

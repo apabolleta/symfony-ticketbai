@@ -4,7 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use APM\TicketBAIBundle\ResponseInterface;
+use APM\TicketBAIBundle\StructureInterface;
 
 /**
  * Class to define TicketBAI 'Response' structure.
@@ -13,7 +13,7 @@ use APM\TicketBAIBundle\ResponseInterface;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class Response implements ResponseInterface
+class Response implements StructureInterface
 {
     private string $IdentificadorTBAI;
 

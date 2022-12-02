@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\TicketBAI;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
+
 /**
  * Class to define TicketBAI 'ResultadoValidacion' structure.
  *
@@ -11,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class ResultadoValidacion
+class ResultadoValidacion implements StructureInterface
 {
     private string $Codigo;
 

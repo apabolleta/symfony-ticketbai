@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\PrestacionServicios;
 use APM\TicketBAIBundle\TicketBAI\Alta\Entrega;
 
@@ -14,7 +15,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\Entrega;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class DesgloseTipoOperacion
+class DesgloseTipoOperacion implements StructureInterface
 {
     /**
      * Obligatorio:         No

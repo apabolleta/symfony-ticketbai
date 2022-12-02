@@ -5,6 +5,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\GroupSequenceProviderInterface;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\DesgloseFactura;
 use APM\TicketBAIBundle\TicketBAI\Alta\DesgloseTipoOperacion;
 
@@ -17,7 +18,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\DesgloseTipoOperacion;
  * @Assert\GroupSequenceProvider
  *
  */
-class TipoDesglose implements GroupSequenceProviderInterface
+class TipoDesglose implements StructureInterface, GroupSequenceProviderInterface
 {
     /**
      * Cuando la contraparte es un “nacional” o no existe contraparte.

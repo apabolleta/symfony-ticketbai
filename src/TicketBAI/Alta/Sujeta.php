@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\DetalleExenta;
 use APM\TicketBAIBundle\TicketBAI\Alta\DetalleNoExenta;
 
@@ -14,7 +15,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\DetalleNoExenta;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class Sujeta
+class Sujeta implements StructureInterface
 {
     /**
      * Obligatorio:         No

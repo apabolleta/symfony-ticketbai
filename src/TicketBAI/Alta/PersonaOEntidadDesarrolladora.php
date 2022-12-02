@@ -5,6 +5,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\GroupSequenceProviderInterface;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\IDOtro;
 
 /**
@@ -16,7 +17,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\IDOtro;
  * @Assert\GroupSequenceProvider
  *
  */
-class PersonaOEntidadDesarrolladora implements GroupSequenceProviderInterface
+class PersonaOEntidadDesarrolladora implements StructureInterface, GroupSequenceProviderInterface
 {
     /**
      * NIF de la persona o entidad desarrolladora.

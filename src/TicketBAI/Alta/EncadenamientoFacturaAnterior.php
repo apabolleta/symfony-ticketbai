@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
+
 /**
  * Class to define TicketBAI 'EncadenamientoFacturaAnterior' structure.
  *
@@ -11,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class EncadenamientoFacturaAnterior
+class EncadenamientoFacturaAnterior implements StructureInterface
 {
     /**
      * Serie que identifica a la factura anterior.

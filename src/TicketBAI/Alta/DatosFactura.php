@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\IDDetalleFactura;
 use APM\TicketBAIBundle\TicketBAI\Alta\IDClave;
 
@@ -14,7 +15,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\IDClave;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class DatosFactura
+class DatosFactura implements StructureInterface
 {
     /**
      * Fecha en la que se ha realizado la operación siempre que sea diferente a la fecha de expedición.

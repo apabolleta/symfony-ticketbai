@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\TicketBAI;
 
 /**
@@ -13,7 +14,7 @@ use APM\TicketBAIBundle\TicketBAI\TicketBAI;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class IDClave
+class IDClave implements StructureInterface
 {
     /**
      * Clave que identifica el tipo de régimen del IVA o una operación con transcendencia tributaria.

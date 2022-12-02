@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Anulacion;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Anulacion\SoftwareTicketBAI;
 
 /**
@@ -13,7 +14,7 @@ use APM\TicketBAIBundle\TicketBAI\Anulacion\SoftwareTicketBAI;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class HuellaTBAI
+class HuellaTBAI implements StructureInterface
 {
     /**
      * Obligatorio:         Sí

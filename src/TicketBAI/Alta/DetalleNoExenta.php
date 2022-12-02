@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\TicketBAI;
 use APM\TicketBAIBundle\TicketBAI\Alta\DetalleIVA;
 
@@ -14,7 +15,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\DetalleIVA;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class DetalleNoExenta
+class DetalleNoExenta implements StructureInterface
 {
     /**
      * Tipo de operación sujeta y no exenta.

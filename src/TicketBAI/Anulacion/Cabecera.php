@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Anulacion;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\TicketBAI;
 
 /**
@@ -13,7 +14,7 @@ use APM\TicketBAIBundle\TicketBAI\TicketBAI;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class Cabecera
+class Cabecera implements StructureInterface
 {
     /**
      * Identificación de la versión de la estructura del fichero TicketBAI utilizado.

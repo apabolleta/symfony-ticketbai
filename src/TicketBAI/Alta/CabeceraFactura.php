@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\TicketBAI;
 use APM\TicketBAIBundle\TicketBAI\Alta\FacturaRectificativa;
 use APM\TicketBAIBundle\TicketBAI\Alta\IDFacturaRectificadaSustituida;
@@ -15,7 +16,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\IDFacturaRectificadaSustituida;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class CabeceraFactura
+class CabeceraFactura implements StructureInterface
 {
     /**
      * Serie que identifica a la factura. Se recomienda:

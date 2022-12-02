@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\EncadenamientoFacturaAnterior;
 use APM\TicketBAIBundle\TicketBAI\Alta\SoftwareTicketBAI;
 
@@ -14,7 +15,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\SoftwareTicketBAI;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class HuellaTBAI
+class HuellaTBAI implements StructureInterface
 {
     /**
      * Obligatorio:         No

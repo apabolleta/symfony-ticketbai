@@ -4,6 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Alta\PersonaOEntidadDesarrolladora;
 
 /**
@@ -13,7 +14,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\PersonaOEntidadDesarrolladora;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class SoftwareTicketBAI
+class SoftwareTicketBAI implements StructureInterface
 {
     /**
      * Número de alta-inscripción asignado por la Administración tributaria en el Registro de Software TicketBAI.

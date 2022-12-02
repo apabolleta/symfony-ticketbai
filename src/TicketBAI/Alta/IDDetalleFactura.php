@@ -4,6 +4,8 @@ namespace APM\TicketBAIBundle\TicketBAI\Alta;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+use APM\TicketBAIBundle\StructureInterface;
+
 /**
  * Class to define TicketBAI 'IDDetalleFactura' structure.
  *
@@ -11,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class IDDetalleFactura
+class IDDetalleFactura implements StructureInterface
 {
     /**
      * Descripción del detalle de la línea de factura.

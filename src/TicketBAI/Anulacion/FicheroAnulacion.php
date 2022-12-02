@@ -4,7 +4,7 @@ namespace APM\TicketBAIBundle\TicketBAI\Anulacion;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-use APM\TicketBAIBundle\RequestInterface;
+use APM\TicketBAIBundle\StructureInterface;
 use APM\TicketBAIBundle\TicketBAI\Anulacion\Cabecera;
 use APM\TicketBAIBundle\TicketBAI\Anulacion\IDFactura;
 use APM\TicketBAIBundle\TicketBAI\Anulacion\HuellaTBAI;
@@ -16,7 +16,7 @@ use APM\TicketBAIBundle\TicketBAI\Anulacion\HuellaTBAI;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-class FicheroAnulacion implements RequestInterface
+class FicheroAnulacion implements StructureInterface
 {
     /**
      * Obligatorio:         Sí
