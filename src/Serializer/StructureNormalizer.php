@@ -7,7 +7,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use APM\TicketBAIBundle\StructureInterface;
 
 /**
- * Class to implement TicketBAIBundle data structure normalizer.
+ * Class to implement TicketBAIBundle structure normalizer.
  *
  * @package  apabolleta/symfony-ticketbai
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
@@ -28,7 +28,7 @@ class StructureNormalizer implements NormalizerInterface
     /**
      * Flag to set default value for uninitialized typed properties.
      *
-     * If SKIP_UNINITIALIZED_VALUES flag set to false, this value is given to uninitialized typed class properties.
+     * If SKIP_UNINITIALIZED_VALUES flag is set to false, this value is given to uninitialized typed class properties.
      * Otherwise, this flag is skipped.
      */
     const UNINITIALIZED_PROPERTY_VALUE = 'uninitialized_property_value';
@@ -65,12 +65,12 @@ class StructureNormalizer implements NormalizerInterface
             switch (\gettype($value)) {
                 case "array":
                     foreach ($value as $v) {
-                        $normalized[$name][(new \ReflectionClass($v))->getShortName()][] = $this->normalize($v, null, []);
+                        $normalized[$name][(new \ReflectionClass($v))->getShortName()][] = $this->normalize($v, $format, $context);
                     }
                     break;
 
                 case "object":
-                    $normalized[$name] = $this->normalize($value, null, []);
+                    $normalized[$name] = $this->normalize($value, $format, $context);
                     break;
 
                 case "string":
