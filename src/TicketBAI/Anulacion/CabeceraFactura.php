@@ -71,7 +71,7 @@ class CabeceraFactura implements StructureInterface
      */
     private string $FechaExpedicionFactura;
 
-    public function getSerieFactura(): ?string
+    public function getSerieFactura(): string
     {
         return $this->SerieFactura;
     }

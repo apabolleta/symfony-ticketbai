@@ -56,7 +56,7 @@ class PersonaOEntidadDesarrolladora implements StructureInterface, GroupSequence
      */
     private IDOtro $IDOtro;
 
-    public function getNIF(): ?string
+    public function getNIF(): string
     {
         return $this->NIF;
     }
@@ -68,7 +68,7 @@ class PersonaOEntidadDesarrolladora implements StructureInterface, GroupSequence
         return $this;
     }
 
-    public function getIDOtro(): ?IDOtro
+    public function getIDOtro(): IDOtro
     {
         return $this->IDOtro;
     }

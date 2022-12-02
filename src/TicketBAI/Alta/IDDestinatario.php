@@ -105,7 +105,7 @@ class IDDestinatario implements StructureInterface, GroupSequenceProviderInterfa
      */
     private string $Direccion;
 
-    public function getNIF(): ?string
+    public function getNIF(): string
     {
         return $this->NIF;
     }
@@ -117,7 +117,7 @@ class IDDestinatario implements StructureInterface, GroupSequenceProviderInterfa
         return $this;
     }
 
-    public function getIDOtro(): ?IDOtro
+    public function getIDOtro(): IDOtro
     {
         return $this->IDOtro;
     }
@@ -141,7 +141,7 @@ class IDDestinatario implements StructureInterface, GroupSequenceProviderInterfa
         return $this;
     }
 
-    public function getCodigoPostal(): ?string
+    public function getCodigoPostal(): string
     {
         return $this->CodigoPostal;
     }
@@ -153,7 +153,7 @@ class IDDestinatario implements StructureInterface, GroupSequenceProviderInterfa
         return $this;
     }
 
-    public function getDireccion(): ?string
+    public function getDireccion(): string
     {
         return $this->Direccion;
     }

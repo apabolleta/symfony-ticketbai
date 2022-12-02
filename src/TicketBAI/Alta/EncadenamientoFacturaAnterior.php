@@ -88,7 +88,7 @@ class EncadenamientoFacturaAnterior implements StructureInterface
      */
     private string $SignatureValueFirmaFacturaAnterior;
 
-    public function getSerieFacturaAnterior(): ?string
+    public function getSerieFacturaAnterior(): string
     {
         return $this->SerieFacturaAnterior;
     }

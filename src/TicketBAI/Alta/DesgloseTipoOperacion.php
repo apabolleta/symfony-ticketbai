@@ -39,7 +39,7 @@ class DesgloseTipoOperacion implements StructureInterface
      */
     private Entrega $Entrega;
 
-    public function getPrestacionServicios(): ?PrestacionServicios
+    public function getPrestacionServicios(): PrestacionServicios
     {
         return $this->PrestacionServicios;
     }
@@ -51,7 +51,7 @@ class DesgloseTipoOperacion implements StructureInterface
         return $this;
     }
 
-    public function getEntrega(): ?Entrega
+    public function getEntrega(): Entrega
     {
         return $this->Entrega;
     }

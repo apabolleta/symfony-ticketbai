@@ -56,7 +56,7 @@ class HuellaTBAI implements StructureInterface
         return $this;
     }
 
-    public function getNumSerieDispositivo(): ?string
+    public function getNumSerieDispositivo(): string
     {
         return $this->NumSerieDispositivo;
     }

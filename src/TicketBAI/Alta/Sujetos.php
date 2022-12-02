@@ -103,7 +103,7 @@ class Sujetos implements StructureInterface
         return $this;
     }
 
-    public function getDestinatarios(): ?array
+    public function getDestinatarios(): array
     {
         return $this->Destinatarios;
     }
@@ -115,7 +115,7 @@ class Sujetos implements StructureInterface
         return $this;
     }
 
-    public function getVariosDestinatarios(): ?string
+    public function getVariosDestinatarios(): string
     {
         return $this->VariosDestinatarios;
     }
@@ -127,7 +127,7 @@ class Sujetos implements StructureInterface
         return $this;
     }
 
-    public function getEmitidaPorTercerosODestinatario(): ?string
+    public function getEmitidaPorTercerosODestinatario(): string
     {
         return $this->EmitidaPorTercerosODestinatario;
     }

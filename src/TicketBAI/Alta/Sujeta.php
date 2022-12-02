@@ -57,7 +57,7 @@ class Sujeta implements StructureInterface
      */
     private array $NoExenta;
 
-    public function getExenta(): ?array
+    public function getExenta(): array
     {
         return $this->Exenta;
     }
@@ -69,7 +69,7 @@ class Sujeta implements StructureInterface
         return $this;
     }
 
-    public function getNoExenta(): ?array
+    public function getNoExenta(): array
     {
         return $this->NoExenta;
     }

@@ -48,7 +48,7 @@ class Entrega implements StructureInterface
      */
     private array $NoSujeta;
 
-    public function getSujeta(): ?Sujeta
+    public function getSujeta(): Sujeta
     {
         return $this->Sujeta;
     }
@@ -60,7 +60,7 @@ class Entrega implements StructureInterface
         return $this;
     }
 
-    public function getNoSujeta(): ?array
+    public function getNoSujeta(): array
     {
         return $this->NoSujeta;
     }

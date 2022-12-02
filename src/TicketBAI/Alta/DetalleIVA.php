@@ -135,7 +135,7 @@ class DetalleIVA implements StructureInterface
         return $this;
     }
 
-    public function getTipoImpositivo(): ?string
+    public function getTipoImpositivo(): string
     {
         return $this->TipoImpositivo;
     }
@@ -147,7 +147,7 @@ class DetalleIVA implements StructureInterface
         return $this;
     }
 
-    public function getCuotaImpuesto(): ?string
+    public function getCuotaImpuesto(): string
     {
         return $this->CuotaImpuesto;
     }
@@ -159,7 +159,7 @@ class DetalleIVA implements StructureInterface
         return $this;
     }
 
-    public function getTipoRecargoEquivalencia(): ?string
+    public function getTipoRecargoEquivalencia(): string
     {
         return $this->TipoRecargoEquivalencia;
     }
@@ -171,7 +171,7 @@ class DetalleIVA implements StructureInterface
         return $this;
     }
 
-    public function getCuotaRecargoEquivalencia(): ?string
+    public function getCuotaRecargoEquivalencia(): string
     {
         return $this->CuotaRecargoEquivalencia;
     }
@@ -183,7 +183,7 @@ class DetalleIVA implements StructureInterface
         return $this;
     }
 
-    public function getOperacionEnRecargoDeEquivalenciaORegimenSimplificado(): ?string
+    public function getOperacionEnRecargoDeEquivalenciaORegimenSimplificado(): string
     {
         return $this->OperacionEnRecargoDeEquivalenciaORegimenSimplificado;
     }

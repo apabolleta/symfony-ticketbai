@@ -78,7 +78,7 @@ class IDOtro implements StructureInterface
      */
     private string $ID;
 
-    public function getCodigoPais(): ?string
+    public function getCodigoPais(): string
     {
         return $this->CodigoPais;
     }

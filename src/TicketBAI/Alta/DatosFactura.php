@@ -147,7 +147,7 @@ class DatosFactura implements StructureInterface
      */
     private array $Claves;
 
-    public function getFechaOperacion(): ?string
+    public function getFechaOperacion(): string
     {
         return $this->FechaOperacion;
     }
@@ -171,7 +171,7 @@ class DatosFactura implements StructureInterface
         return $this;
     }
 
-    public function getDetallesFactura(): ?array
+    public function getDetallesFactura(): array
     {
         return $this->DetallesFactura;
     }
@@ -195,7 +195,7 @@ class DatosFactura implements StructureInterface
         return $this;
     }
 
-    public function getRetencionSoportada(): ?string
+    public function getRetencionSoportada(): string
     {
         return $this->RetencionSoportada;
     }
@@ -207,7 +207,7 @@ class DatosFactura implements StructureInterface
         return $this;
     }
 
-    public function getBaseImponibleACoste(): ?string
+    public function getBaseImponibleACoste(): string
     {
         return $this->BaseImponibleACoste;
     }

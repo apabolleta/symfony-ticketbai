@@ -52,7 +52,7 @@ class TipoDesglose implements StructureInterface, GroupSequenceProviderInterface
      */
     private DesgloseTipoOperacion $DesgloseTipoOperacion;
 
-    public function getDesgloseFactura(): ?DesgloseFactura
+    public function getDesgloseFactura(): DesgloseFactura
     {
         return $this->DesgloseFactura;
     }
@@ -64,7 +64,7 @@ class TipoDesglose implements StructureInterface, GroupSequenceProviderInterface
         return $this;
     }
 
-    public function getDesgloseTipoOperacion(): ?DesgloseTipoOperacion
+    public function getDesgloseTipoOperacion(): DesgloseTipoOperacion
     {
         return $this->DesgloseTipoOperacion;
     }

@@ -178,7 +178,7 @@ class CabeceraFactura implements StructureInterface
      */
     private array $FacturasRectificadasSustituidas;
 
-    public function getSerieFactura(): ?string
+    public function getSerieFactura(): string
     {
         return $this->SerieFactura;
     }
@@ -226,7 +226,7 @@ class CabeceraFactura implements StructureInterface
         return $this;
     }
 
-    public function getFacturaSimplificada(): ?string
+    public function getFacturaSimplificada(): string
     {
         return $this->FacturaSimplificada;
     }
@@ -238,7 +238,7 @@ class CabeceraFactura implements StructureInterface
         return $this;
     }
 
-    public function getFacturaEmitidaSustitucionSimplificada(): ?string
+    public function getFacturaEmitidaSustitucionSimplificada(): string
     {
         return $this->FacturaEmitidaSustitucionSimplificada;
     }
@@ -250,7 +250,7 @@ class CabeceraFactura implements StructureInterface
         return $this;
     }
 
-    public function getFacturaRectificativa(): ?FacturaRectificativa
+    public function getFacturaRectificativa(): FacturaRectificativa
     {
         return $this->FacturaRectificativa;
     }
@@ -262,7 +262,7 @@ class CabeceraFactura implements StructureInterface
         return $this;
     }
 
-    public function getFacturasRectificadasSustituidas(): ?array
+    public function getFacturasRectificadasSustituidas(): array
     {
         return $this->FacturasRectificadasSustituidas;
     }

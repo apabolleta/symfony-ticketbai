@@ -92,7 +92,7 @@ class FacturaRectificativa implements StructureInterface
         return $this;
     }
 
-    public function getImporteRectificacionSustitutiva(): ?ImporteRectificacionSustitutiva
+    public function getImporteRectificacionSustitutiva(): ImporteRectificacionSustitutiva
     {
         return $this->ImporteRectificacionSustitutiva;
     }

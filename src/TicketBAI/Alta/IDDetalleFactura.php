@@ -139,7 +139,7 @@ class IDDetalleFactura implements StructureInterface
         return $this;
     }
 
-    public function getDescuento(): ?string
+    public function getDescuento(): string
     {
         return $this->Descuento;
     }

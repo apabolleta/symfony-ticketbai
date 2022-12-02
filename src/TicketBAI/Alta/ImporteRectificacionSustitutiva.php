@@ -92,7 +92,7 @@ class ImporteRectificacionSustitutiva implements StructureInterface
         return $this;
     }
 
-    public function getCuotaRecargoRectificada(): ?string
+    public function getCuotaRecargoRectificada(): string
     {
         return $this->CuotaRecargoRectificada;
     }

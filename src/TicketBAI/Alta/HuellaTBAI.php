@@ -56,7 +56,7 @@ class HuellaTBAI implements StructureInterface
      */
     private string $NumSerieDispositivo;
 
-    public function getEncadenamientoFacturaAnterior(): ?EncadenamientoFacturaAnterior
+    public function getEncadenamientoFacturaAnterior(): EncadenamientoFacturaAnterior
     {
         return $this->EncadenamientoFacturaAnterior;
     }
@@ -80,7 +80,7 @@ class HuellaTBAI implements StructureInterface
         return $this;
     }
 
-    public function getNumSerieDispositivo(): ?string
+    public function getNumSerieDispositivo(): string
     {
         return $this->NumSerieDispositivo;
     }
