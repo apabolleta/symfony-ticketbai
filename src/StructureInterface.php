@@ -9,4 +9,6 @@ namespace APM\TicketBAIBundle;
  * @author   Asier Pabolleta Martorell <apabolleta@gmail.com>
  *
  */
-interface StructureInterface {}
+interface StructureInterface
+{
+}
