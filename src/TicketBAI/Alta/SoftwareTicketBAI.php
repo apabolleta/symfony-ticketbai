@@ -45,7 +45,7 @@ class SoftwareTicketBAI implements StructureInterface
      * @Assert\Type(type=PersonaOEntidadDesarrolladora::class)
      * @Assert\Valid
      */
-    private PersonaOEntidadDesarrolladora $PersonaOEntidadDesarrolladora;
+    private PersonaOEntidadDesarrolladora $EntidadDesarrolladora;
 
     /**
      * Nombre del software TicketBAI.
@@ -97,12 +97,12 @@ class SoftwareTicketBAI implements StructureInterface
 
     public function getPersonaOEntidadDesarrolladora(): PersonaOEntidadDesarrolladora
     {
-        return $this->PersonaOEntidadDesarrolladora;
+        return $this->EntidadDesarrolladora;
     }
 
     public function setPersonaOEntidadDesarrolladora(PersonaOEntidadDesarrolladora $PersonaOEntidadDesarrolladora): self
     {
-        $this->PersonaOEntidadDesarrolladora = $PersonaOEntidadDesarrolladora;
+        $this->EntidadDesarrolladora = $PersonaOEntidadDesarrolladora;
 
         return $this;
     }
