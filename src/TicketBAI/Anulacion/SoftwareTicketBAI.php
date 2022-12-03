@@ -18,7 +18,8 @@ class SoftwareTicketBAI implements StructureInterface
 {
     /**
      * Número de alta-inscripción asignado por la Administración tributaria en el Registro de Software TicketBAI.
-     * (Número de Alta Inscripción).
+     *
+     * (Número de Alta Inscripción)
      *
      * Formato:         Alfanumérico(20)
      * Obligatorio:     Sí
@@ -44,10 +45,11 @@ class SoftwareTicketBAI implements StructureInterface
      * @Assert\Type(type=PersonaOEntidadDesarrolladora::class)
      * @Assert\Valid
      */
-    private PersonaOEntidadDesarrolladora $PersonaOEntidadDesarrolladora;
+    private PersonaOEntidadDesarrolladora $EntidadDesarrolladora;
 
     /**
      * Nombre del software TicketBAI.
+     *
      * Dato asociado a la inscripción en el Registro de Software TicketBAI.
      *
      * Formato:         Alfanumérico(120)
@@ -95,12 +97,12 @@ class SoftwareTicketBAI implements StructureInterface
 
     public function getPersonaOEntidadDesarrolladora(): PersonaOEntidadDesarrolladora
     {
-        return $this->PersonaOEntidadDesarrolladora;
+        return $this->EntidadDesarrolladora;
     }
 
     public function setPersonaOEntidadDesarrolladora(PersonaOEntidadDesarrolladora $PersonaOEntidadDesarrolladora): self
     {
-        $this->PersonaOEntidadDesarrolladora = $PersonaOEntidadDesarrolladora;
+        $this->EntidadDesarrolladora = $PersonaOEntidadDesarrolladora;
 
         return $this;
     }
