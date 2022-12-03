@@ -38,7 +38,7 @@ class HuellaTBAI implements StructureInterface
      * @Assert\Type(type=SoftwareTicketBAI::class)
      * @Assert\Valid
      */
-    private SoftwareTicketBAI $SoftwareTicketBAI;
+    private SoftwareTicketBAI $Software;
 
     /**
      * Número de serie del dispositivo de facturación utilizado.
@@ -70,12 +70,12 @@ class HuellaTBAI implements StructureInterface
 
     public function getSoftwareTicketBAI(): SoftwareTicketBAI
     {
-        return $this->SoftwareTicketBAI;
+        return $this->Software;
     }
 
     public function setSoftwareTicketBAI(SoftwareTicketBAI $SoftwareTicketBAI): self
     {
-        $this->SoftwareTicketBAI = $SoftwareTicketBAI;
+        $this->Software = $SoftwareTicketBAI;
 
         return $this;
     }
