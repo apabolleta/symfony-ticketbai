@@ -57,6 +57,7 @@ class Sujetos implements StructureInterface
      * Formato:             Alfanumérico(1)
      * Valores posibles:    L3
      * Obligatorio:         No
+     * Valor por defector:  "N"
      *
      * @access  private
      * @var     string
