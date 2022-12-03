@@ -44,9 +44,9 @@ class StructureNormalizer implements NormalizerInterface
 
     public function normalize($structure, string $format = null, array $context = [])
     {
-        $normalized = [];  # Normalized data
-
         $context = \array_merge($this->defaultContext, $context);  # Get context
+
+        $normalized = [];  # Normalized data
 
         $reflection = new \ReflectionClass($structure);
         foreach ($reflection->getProperties() as $property) {
