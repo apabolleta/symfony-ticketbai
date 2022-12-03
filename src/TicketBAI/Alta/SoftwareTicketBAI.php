@@ -18,7 +18,8 @@ class SoftwareTicketBAI implements StructureInterface
 {
     /**
      * Número de alta-inscripción asignado por la Administración tributaria en el Registro de Software TicketBAI.
-     * (Número de Alta Inscripción).
+     *
+     * (Número de Alta Inscripción)
      *
      * Formato:         Alfanumérico(20)
      * Obligatorio:     Sí
@@ -48,6 +49,7 @@ class SoftwareTicketBAI implements StructureInterface
 
     /**
      * Nombre del software TicketBAI.
+     *
      * Dato asociado a la inscripción en el Registro de Software TicketBAI.
      *
      * Formato:         Alfanumérico(120)
