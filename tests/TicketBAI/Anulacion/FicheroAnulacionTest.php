@@ -123,9 +123,9 @@ final class FicheroAnulacionTest extends EntityValidationTestCase
                     )
                     ->setCabeceraFactura(
                         (new CabeceraFactura())
-                            ->setSerieFactura("S0001-01-xyz")  # 5.- Invalid format in 'Strict' mode
-                            ->setNumFactura("12345abc")  # 6.- Invalid format in 'Strict' mode
-                            # 7.- Undefined FechaExpedicionFactura
+                            ->setSerieFactura("S0001-01")
+                            ->setNumFactura("12345")
+                            # 5.- Undefined FechaExpedicionFactura
                     )
             )
             ->setHuellaTBAI(
@@ -133,12 +133,12 @@ final class FicheroAnulacionTest extends EntityValidationTestCase
                     ->setSoftwareTicketBAI(
                         (new SoftwareTicketBAI())
                             ->setLicenciaTBAI("1122334455")
-                            # 8.- Undefined PersonaOEntidadDesarrolladora
-                            ->setNombre("")  # 9.- Not blank
-                            ->setVersion("")  # 10.- Not blank
+                            # 6.- Undefined PersonaOEntidadDesarrolladora
+                            ->setNombre("")  # 7.- Not blank
+                            ->setVersion("")  # 8.- Not blank
                     )
             );
 
-        self::assertCountConstraintViolations(10, $ficheroAnulacion, null, ['Default', 'Strict']);
+        self::assertCountConstraintViolations(8, $ficheroAnulacion, null, ['Default', 'Strict']);
     }
 }

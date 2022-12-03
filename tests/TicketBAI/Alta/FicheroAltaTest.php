@@ -412,9 +412,9 @@ final class FicheroAltaTest extends EntityValidationTestCase
                 (new HuellaTBAI())
                     ->setEncadenamientoFacturaAnterior(
                         (new EncadenamientoFacturaAnterior())
-                            ->setSerieFacturaAnterior("S0000-0000.01")  # 32.- Invalid format in 'Strict' mode
+                            ->setSerieFacturaAnterior("S0000-0000")
                             ->setNumFacturaAnterior("12345")
-                            ->setFechaExpedicionFacturaAnterior("01 01 2022")  # 33.- Invalid date format (separator: '-')
+                            ->setFechaExpedicionFacturaAnterior("01 01 2022")  # 32.- Invalid date format (separator: '-')
                             ->setSignatureValueFirmaFacturaAnterior(\str_repeat("1", 100))
                     )
                     ->setSoftwareTicketBAI(
@@ -429,6 +429,6 @@ final class FicheroAltaTest extends EntityValidationTestCase
                     )
             );
 
-        self::assertCountConstraintViolations(33, $ficheroAlta, null, ['Default', 'Gipuzkoa', 'Strict']);
+        self::assertCountConstraintViolations(32, $ficheroAlta, null, ['Default', 'Gipuzkoa', 'Strict']);
     }
 }
