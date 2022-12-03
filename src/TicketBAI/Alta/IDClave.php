@@ -34,16 +34,16 @@ class IDClave implements StructureInterface
      * )
      * @Assert\Choice(choices=TicketBAI::L9_ClaveRegimenIVAOperacionTranscendencia)
      */
-    private string $ClaveRegimenIVAOperacionTranscendencia;
+    private string $ClaveRegimenIvaOpTrascendencia;
 
     public function getClaveRegimenIVAOperacionTranscendencia(): string
     {
-        return $this->ClaveRegimenIVAOperacionTranscendencia;
+        return $this->ClaveRegimenIvaOpTrascendencia;
     }
 
     public function setClaveRegimenIVAOperacionTranscendencia(string $ClaveRegimenIVAOperacionTranscendencia): self
     {
-        $this->ClaveRegimenIVAOperacionTranscendencia = $ClaveRegimenIVAOperacionTranscendencia;
+        $this->ClaveRegimenIvaOpTrascendencia = $ClaveRegimenIVAOperacionTranscendencia;
 
         return $this;
     }
