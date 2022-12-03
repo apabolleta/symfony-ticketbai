@@ -58,11 +58,10 @@ class FicheroAnulacion implements StructureInterface
      * Ver “Especificaciones de la firma electrónica de los ficheros TicketBAI” en el anexo III.
      *
      * @access  private
-     * @var     string
+     * @var     mixed
      *
-     * @Assert\Type(type="string")
      */
-    private string $Signature;
+    private $Signature;
 
     public function getCabecera(): Cabecera
     {
@@ -100,12 +99,12 @@ class FicheroAnulacion implements StructureInterface
         return $this;
     }
 
-    public function getSignature(): string
+    public function getSignature()
     {
         return $this->Signature;
     }
 
-    public function setSignature(string $Signature): self
+    public function setSignature($Signature): self
     {
         $this->Signature = $Signature;
 
