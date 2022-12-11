@@ -383,7 +383,7 @@ class XMLSigner implements SignerInterface
         $signatureValue = $doc->createElement("ds:SignatureValue");
         $signatureValue->setAttribute("Id", "SignatureValue-" . $uid);
 
-        \openssl_sign($signedInfo->C14N(), $signature, \openssl_pkey_get_private($this->certificates["cert"]), OPENSSL_ALGO_SHA256);
+        \openssl_sign($signedInfo->C14N(), $signature, \openssl_pkey_get_private($this->certificates["pkey"]), OPENSSL_ALGO_SHA256);
 
         $signatureValue->nodeValue = \base64_encode($signature);
 
