@@ -106,7 +106,7 @@ class XMLSigner implements SignerInterface
 
         ####### ds:X509IssuerName
         $X509IssuerName = $doc->createElement("ds:X509IssuerName");
-        $X509IssuerName->nodeValue = \implode(", ", \openssl_x509_parse($this->certificates["cert"])["issuer"]);
+        $X509IssuerName->nodeValue = \urldecode(\http_build_query(\array_reverse(\openssl_x509_parse($this->certificates["cert"])["issuer"]), '', ', '));
 
         $issuerSerial->appendChild($X509IssuerName);
 
@@ -240,14 +240,14 @@ class XMLSigner implements SignerInterface
 
         ## ds:X509Certificate (Signer certificate)
         $X509Certificate = $doc->createElement("ds:X509Certificate");
-        $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\n"], "", $this->certificates["cert"]);
+        $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $this->certificates["cert"]);
 
         $X509Data->appendChild($X509Certificate);
 
         ## ds:X509Certificate (Extra certificates)
         foreach ($this->certificates["extracerts"] as $certificate) {
             $X509Certificate = $doc->createElement("ds:X509Certificate");
-            $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\n"], "", $certificate);
+            $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $certificate);
 
             $X509Data->appendChild($X509Certificate);
         }
