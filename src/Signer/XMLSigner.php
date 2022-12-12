@@ -38,7 +38,7 @@ class XMLSigner implements SignerInterface
         }
 
         if (!\openssl_pkcs12_read($contents, $this->certificates, $passphrase)) {
-            throw new \Exception("Unable to read the certificate(s) (store).");
+            throw new \Exception("Unable to read #PKCS12 certificate store.");
         }
     }
 
