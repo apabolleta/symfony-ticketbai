@@ -28,7 +28,8 @@
         "symfony/serializer": "^5.4",
         "doctrine/annotations": "^1.13",
         "symfony/cache": "^5.4",
-        "symfony/intl": "^5.4"
+        "symfony/intl": "^5.4",
+        "symfony/http-client": "^5.4"
     },
     "require-dev": {
         "symfony/test-pack": "^1.0"
