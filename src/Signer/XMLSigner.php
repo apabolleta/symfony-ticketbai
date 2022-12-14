@@ -13,16 +13,27 @@ use APM\TicketBAIBundle\SignerInterface;
  */
 class XMLSigner implements SignerInterface
 {
-    const SIGNATURE_POLICY_IDENTIFIER = "https://www.gipuzkoa.eus/ticketbai/sinadura";
-    const SIGNATURE_POLICY_URI        = "https://www.gipuzkoa.eus/ticketbai/sinadura";
-    const SIGNATURE_POLICY_DIGEST     = "vSe1CH7eAFVkGN0X2Y7Nl9XGUoBnziDA5BGUSsyt8mg=";
-
     /**
      * Flag to set custom UID.
+     *
+     * If set to null, self-generated value is used.
      */
     const UID = 'uid';
 
-    private $certificates;
+    /**
+     * Flag to set signature policy identifier.
+     */
+    const SIGNATURE_POLICY_IDENTIFIER = 'signature_policy_identifier';
+
+    /**
+     * Flag to set signature policy URI.
+     */
+    const SIGNATURE_POLICY_URI = 'signature_policy_uri';
+
+    /**
+     * Flag to set signature policy digest.
+     */
+    const SIGNATURE_POLICY_DIGEST = 'signature_policy_digest';
 
     /**
      * Default signer context.
@@ -31,13 +42,11 @@ class XMLSigner implements SignerInterface
         self::UID => null
     ];
 
+    private $certificates;
+
     public function __construct(string $pkcs12, string $passphrase)
     {
-        if (!$contents = \file_get_contents($pkcs12)) {
-            throw new \Exception("Unable to read file: $pkcs12");
-        }
-
-        if (!\openssl_pkcs12_read($contents, $this->certificates, $passphrase)) {
+        if (!\openssl_pkcs12_read($pkcs12, $this->certificates, $passphrase)) {
             throw new \Exception("Unable to read #PKCS12 certificate store.");
         }
     }
@@ -128,54 +137,60 @@ class XMLSigner implements SignerInterface
         ##### xades:SignaturePolicyId
         $signaturePolicyId = $doc->createElement("xades:SignaturePolicyId");
 
-        ###### xades:SigPolicyId
-        $sigPolicyId = $doc->createElement("xades:SigPolicyId");
+        if (isset($context[self::SIGNATURE_POLICY_IDENTIFIER])) {
+            ###### xades:SigPolicyId
+            $sigPolicyId = $doc->createElement("xades:SigPolicyId");
 
-        ####### xades:Identifier
-        $identifier = $doc->createElement("xades:Identifier");
-        $identifier->nodeValue = self::SIGNATURE_POLICY_IDENTIFIER;
+            ####### xades:Identifier
+            $identifier = $doc->createElement("xades:Identifier");
+            $identifier->nodeValue = $context[self::SIGNATURE_POLICY_IDENTIFIER];
 
-        $sigPolicyId->appendChild($identifier);
+            $sigPolicyId->appendChild($identifier);
 
-        ####### xades:Description
-        $description = $doc->createElement("xades:Description");
+            ####### xades:Description
+            $description = $doc->createElement("xades:Description");
 
-        $sigPolicyId->appendChild($description);
+            $sigPolicyId->appendChild($description);
 
-        $signaturePolicyId->appendChild($sigPolicyId);
+            $signaturePolicyId->appendChild($sigPolicyId);
+        }
 
-        ###### xades:SigPolicyHash
-        $sigPolicyHash = $doc->createElement("xades:SigPolicyHash");
+        if (isset($context[self::SIGNATURE_POLICY_DIGEST])) {
+            ###### xades:SigPolicyHash
+            $sigPolicyHash = $doc->createElement("xades:SigPolicyHash");
 
-        ####### ds:DigestMethod
-        $digestMethod = $doc->createElement("ds:DigestMethod");
-        $digestMethod->setAttribute("Algorithm", "http://www.w3.org/2001/04/xmlenc#sha256");
+            ####### ds:DigestMethod
+            $digestMethod = $doc->createElement("ds:DigestMethod");
+            $digestMethod->setAttribute("Algorithm", "http://www.w3.org/2001/04/xmlenc#sha256");
 
-        $sigPolicyHash->appendChild($digestMethod);
+            $sigPolicyHash->appendChild($digestMethod);
 
-        ####### ds:DigestValue
-        $digestValue = $doc->createElement("ds:DigestValue");
-        $digestValue->nodeValue = self::SIGNATURE_POLICY_DIGEST;
+            ####### ds:DigestValue
+            $digestValue = $doc->createElement("ds:DigestValue");
+            $digestValue->nodeValue = $context[self::SIGNATURE_POLICY_DIGEST];
 
-        $sigPolicyHash->appendChild($digestValue);
+            $sigPolicyHash->appendChild($digestValue);
 
-        $signaturePolicyId->appendChild($sigPolicyHash);
+            $signaturePolicyId->appendChild($sigPolicyHash);
+        }
 
-        ###### xades:SigPolicyQualifiers
-        $sigPolicyQualifiers = $doc->createElement("xades:SigPolicyQualifiers");
+        if (isset($context[self::SIGNATURE_POLICY_URI])) {
+            ###### xades:SigPolicyQualifiers
+            $sigPolicyQualifiers = $doc->createElement("xades:SigPolicyQualifiers");
 
-        ####### xades:SigPolicyQualifier
-        $sigPolicyQualifier = $doc->createElement("xades:SigPolicyQualifier");
+            ####### xades:SigPolicyQualifier
+            $sigPolicyQualifier = $doc->createElement("xades:SigPolicyQualifier");
 
-        ######## xades:SPURI
-        $spuri = $doc->createElement("xades:SPURI");
-        $spuri->nodeValue = self::SIGNATURE_POLICY_URI;
+            ######## xades:SPURI
+            $spuri = $doc->createElement("xades:SPURI");
+            $spuri->nodeValue = $context[self::SIGNATURE_POLICY_URI];
 
-        $sigPolicyQualifier->appendChild($spuri);
+            $sigPolicyQualifier->appendChild($spuri);
 
-        $sigPolicyQualifiers->appendChild($sigPolicyQualifier);
+            $sigPolicyQualifiers->appendChild($sigPolicyQualifier);
 
-        $signaturePolicyId->appendChild($sigPolicyQualifiers);
+            $signaturePolicyId->appendChild($sigPolicyQualifiers);
+        }
 
         $signaturePolicyIdentifier->appendChild($signaturePolicyId);
 
@@ -245,11 +260,13 @@ class XMLSigner implements SignerInterface
         $X509Data->appendChild($X509Certificate);
 
         ## ds:X509Certificate (Extra certificates)
-        foreach ($this->certificates["extracerts"] as $certificate) {
-            $X509Certificate = $doc->createElement("ds:X509Certificate");
-            $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $certificate);
+        if (isset($this->certificates["extracerts"])) {
+            foreach ($this->certificates["extracerts"] as $certificate) {
+                $X509Certificate = $doc->createElement("ds:X509Certificate");
+                $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $certificate);
 
-            $X509Data->appendChild($X509Certificate);
+                $X509Data->appendChild($X509Certificate);
+            }
         }
 
         $keyInfo->appendChild($X509Data);
