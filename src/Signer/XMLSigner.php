@@ -42,13 +42,19 @@ class XMLSigner implements SignerInterface
         self::UID => null
     ];
 
-    private $certificates;
+    private $private_key;
+    private $certificate;
+    private $certificate_chain;
 
-    public function __construct(string $pkcs12, string $passphrase)
+    public function __construct(string $private_key, string $certificate, array $certificate_chain = [])
     {
-        if (!\openssl_pkcs12_read($pkcs12, $this->certificates, $passphrase)) {
-            throw new \Exception("Unable to read #PKCS12 certificate store.");
+        if (!\openssl_x509_check_private_key($certificate, $private_key)) {
+            throw new \Exception("Private key does not correspond to given certificate.");
         }
+
+        $this->private_key = $private_key;
+        $this->certificate = $certificate;
+        $this->certificate_chain = $certificate_chain;
     }
 
     public function sign(string $data, string $format = null, array $context = []): string
@@ -64,7 +70,9 @@ class XMLSigner implements SignerInterface
 
         $uid = $context[self::UID] ?? \uniqid();
 
+        /* --------- */
         /* ds:Object */
+        /* --------- */
         $object = $doc->createElement("ds:Object");
 
         # xades:QualifyingProperties
@@ -104,7 +112,7 @@ class XMLSigner implements SignerInterface
 
         ####### ds:DigestValue
         $digestValue = $doc->createElement("ds:DigestValue");
-        $digestValue->nodeValue = \base64_encode(\openssl_x509_fingerprint($this->certificates["cert"], "sha512", true));
+        $digestValue->nodeValue = \base64_encode(\openssl_x509_fingerprint($this->certificate, "sha512", true));
 
         $certDigest->appendChild($digestValue);
 
@@ -115,13 +123,13 @@ class XMLSigner implements SignerInterface
 
         ####### ds:X509IssuerName
         $X509IssuerName = $doc->createElement("ds:X509IssuerName");
-        $X509IssuerName->nodeValue = \urldecode(\http_build_query(\array_reverse(\openssl_x509_parse($this->certificates["cert"])["issuer"]), '', ', '));
+        $X509IssuerName->nodeValue = \urldecode(\http_build_query(\array_reverse(\openssl_x509_parse($this->certificate)["issuer"]), "", ", "));
 
         $issuerSerial->appendChild($X509IssuerName);
 
         ####### ds:X509SerialNumber
         $X509SerialNumber = $doc->createElement("ds:X509SerialNumber");
-        $X509SerialNumber->nodeValue = \openssl_x509_parse($this->certificates["cert"])["serialNumber"];
+        $X509SerialNumber->nodeValue = \openssl_x509_parse($this->certificate)["serialNumber"];
 
         $issuerSerial->appendChild($X509SerialNumber);
 
@@ -246,7 +254,9 @@ class XMLSigner implements SignerInterface
 
         $object->appendChild($qualifyingProperties);
 
+        /* ---------- */
         /* ds:KeyInfo */
+        /* ---------- */
         $keyInfo = $doc->createElement("ds:KeyInfo");
         $keyInfo->setAttribute("Id", "KeyInfo-" . $uid);
 
@@ -255,18 +265,16 @@ class XMLSigner implements SignerInterface
 
         ## ds:X509Certificate (Signer certificate)
         $X509Certificate = $doc->createElement("ds:X509Certificate");
-        $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $this->certificates["cert"]);
+        $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $this->certificate);
 
         $X509Data->appendChild($X509Certificate);
 
         ## ds:X509Certificate (Extra certificates)
-        if (isset($this->certificates["extracerts"])) {
-            foreach ($this->certificates["extracerts"] as $certificate) {
-                $X509Certificate = $doc->createElement("ds:X509Certificate");
-                $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $certificate);
+        foreach ($this->certificate_chain as $certificate) {
+            $X509Certificate = $doc->createElement("ds:X509Certificate");
+            $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $certificate);
 
-                $X509Data->appendChild($X509Certificate);
-            }
+            $X509Data->appendChild($X509Certificate);
         }
 
         $keyInfo->appendChild($X509Data);
@@ -274,28 +282,80 @@ class XMLSigner implements SignerInterface
         # ds:KeyValue
         $keyValue = $doc->createElement("ds:KeyValue");
 
-        ## ds:RSAKeyValue
-        $RSAKeyValue = $doc->createElement("ds:RSAKeyValue");
+        $publicKey = \openssl_pkey_get_details(\openssl_pkey_get_public($this->certificate));
+        if ($publicKey["type"] == OPENSSL_KEYTYPE_RSA) {
+            ## ds:RSAKeyValue
+            $RSAKeyValue = $doc->createElement("ds:RSAKeyValue");
 
-        $publicKey = \openssl_pkey_get_details(\openssl_pkey_get_public($this->certificates["cert"]));
+            ### ds:Modulus
+            $modulus = $doc->createElement("ds:Modulus");
+            $modulus->nodeValue = \base64_encode($publicKey["rsa"]["n"]);
 
-        ### ds:Modulus
-        $modulus = $doc->createElement("ds:Modulus");
-        $modulus->nodeValue = \base64_encode($publicKey["rsa"]["n"]);
+            $RSAKeyValue->appendChild($modulus);
 
-        $RSAKeyValue->appendChild($modulus);
+            ### ds:Exponent
+            $exponent = $doc->createElement("ds:Exponent");
+            $exponent->nodeValue = \base64_encode($publicKey["rsa"]["e"]);
 
-        ### ds:Exponent
-        $exponent = $doc->createElement("ds:Exponent");
-        $exponent->nodeValue = \base64_encode($publicKey["rsa"]["e"]);
+            $RSAKeyValue->appendChild($exponent);
 
-        $RSAKeyValue->appendChild($exponent);
+            $keyValue->appendChild($RSAKeyValue);
+        } else if ($publicKey["type"] == OPENSSL_KEYTYPE_DSA) {
+            ## ds:DSAKeyValue
+            $DSAKeyValue = $doc->createElement("ds:DSAKeyValue");
 
-        $keyValue->appendChild($RSAKeyValue);
+            ### ds:P
+            $p = $doc->createElement("ds:P");
+            $p->nodeValue = \base64_encode($publicKey["dsa"]["p"]);
+
+            $DSAKeyValue->appendChild($p);
+
+            ### ds:Q
+            $q = $doc->createElement("ds:Q");
+            $q->nodeValue = \base64_encode($publicKey["dsa"]["q"]);
+
+            $DSAKeyValue->appendChild($q);
+
+            ### ds:G
+            $g = $doc->createElement("ds:G");
+            $g->nodeValue = \base64_encode($publicKey["dsa"]["g"]);
+
+            $DSAKeyValue->appendChild($g);
+
+            ### ds:Y
+            $y = $doc->createElement("ds:Y");
+            $y->nodeValue = \base64_encode($publicKey["dsa"]["pub_key"]);
+
+            $DSAKeyValue->appendChild($y);
+
+            $keyValue->appendChild($DSAKeyValue);
+        } else if ($publicKey["type"] == OPENSSL_KEYTYPE_EC) {
+            ## dsig11:ECKeyValue
+            $ECKeyValue = $doc->createElement("dsig11:ECKeyValue");
+            $ECKeyValue->setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:dsig11", "http://www.w3.org/2009/xmldsig11#");
+
+            ### dsig11:NamedCurve
+            $namedCurve = $doc->createElement("dsig11:NamedCurve");
+            $namedCurve->setAttribute("URI", "urn:oid:" . $publicKey["ec"]["curve_oid"]);
+
+            $ECKeyValue->appendChild($namedCurve);
+
+            ### dsig11:PublicKey
+            $ECPublicKey = $doc->createElement("dsig11:PublicKey");
+            $ECPublicKey->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $publicKey["key"]);
+
+            $ECKeyValue->appendChild($ECPublicKey);
+
+            $keyValue->appendChild($ECKeyValue);
+        } else {
+            throw new \Exception("Public key type not supported.");
+        }
 
         $keyInfo->appendChild($keyValue);
 
+        /* ------------- */
         /* ds:SignedInfo */
+        /* ------------- */
         $signedInfo = $doc->createElement("ds:SignedInfo");
 
         # ds:CanonicalizationMethod (C14N)
@@ -396,17 +456,18 @@ class XMLSigner implements SignerInterface
 
         $signedInfo->appendChild($reference);
 
+        \openssl_sign($signedInfo->C14N(), $signature, \openssl_pkey_get_private($this->private_key), OPENSSL_ALGO_SHA256);
+
+        /* ----------------- */
         /* ds:SignatureValue */
+        /* ----------------- */
         $signatureValue = $doc->createElement("ds:SignatureValue");
         $signatureValue->setAttribute("Id", "SignatureValue-" . $uid);
-
-        \openssl_sign($signedInfo->C14N(), $signature, \openssl_pkey_get_private($this->certificates["pkey"]), OPENSSL_ALGO_SHA256);
-
         $signatureValue->nodeValue = \base64_encode($signature);
 
-        # --------------------------------------------------
-        # ds:Signature
-        # --------------------------------------------------
+        /* ************ */
+        /* ds:Signature */
+        /* ************ */
         $signature = $doc->createElement("ds:Signature");
         $signature->setAttribute("Id", "Signature-" . $uid);
         $signature->setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:ds", "http://www.w3.org/2000/09/xmldsig#");
