@@ -63,12 +63,17 @@ class XMLSigner implements SignerInterface
 
         $doc = new \DOMDocument();
         if (!$doc->loadXML($data)) {
-            throw new \InvalidArgumentException("Argument provided must contain valid XML data.");
+            throw new \Exception("Argument provided must contain valid XML data.");
+        }
+
+        $XPath = new \DOMXPath($doc);
+        if (false == $XPath->evaluate("not(ancestor-or-self::ds:Signature)")) {
+            throw new \Exception("XML data must not contain ds:Signature element.");
         }
 
         $root = $doc->documentElement;
 
-        $uid = $context[self::UID] ?? \uniqid();
+        $uid = $context[self::UID] ?? \uniqid();  # Unique ID
 
         /* --------- */
         /* ds:Object */
@@ -481,7 +486,7 @@ class XMLSigner implements SignerInterface
         $root->appendChild($signature);
 
         if (!$xml = $doc->saveXML()) {
-            throw new \RuntimeException("Unable to sign XML data.");
+            throw new \Exception("Unable to sign XML data.");
         }
 
         return $xml;
@@ -489,6 +494,6 @@ class XMLSigner implements SignerInterface
 
     public function verify(string $data): bool
     {
-        throw new \BadMethodCallException("Method " . __METHOD__ . " not implemented.");
+        throw new \Exception("Method " . __METHOD__ . " not implemented.");
     }
 }
