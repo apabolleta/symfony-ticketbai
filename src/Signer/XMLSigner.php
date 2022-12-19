@@ -42,19 +42,19 @@ class XMLSigner implements SignerInterface
         self::UID => null
     ];
 
-    private $private_key;
+    private $privateKey;
     private $certificate;
-    private $certificate_chain;
+    private $certificateChain;
 
-    public function __construct(string $private_key, string $certificate, array $certificate_chain = [])
+    public function __construct(string $privateKey, string $certificate, array $certificateChain = [])
     {
-        if (!\openssl_x509_check_private_key($certificate, $private_key)) {
+        if (!\openssl_x509_check_private_key($certificate, $privateKey)) {
             throw new \Exception("Private key does not correspond to given certificate.");
         }
 
-        $this->private_key = $private_key;
+        $this->privateKey = $privateKey;
         $this->certificate = $certificate;
-        $this->certificate_chain = $certificate_chain;
+        $this->certificateChain = $certificateChain;
     }
 
     public function sign(string $data, string $format = null, array $context = []): string
@@ -275,7 +275,7 @@ class XMLSigner implements SignerInterface
         $X509Data->appendChild($X509Certificate);
 
         ## ds:X509Certificate (Extra certificates)
-        foreach ($this->certificate_chain as $certificate) {
+        foreach ($this->certificateChain as $certificate) {
             $X509Certificate = $doc->createElement("ds:X509Certificate");
             $X509Certificate->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $certificate);
 
@@ -461,7 +461,7 @@ class XMLSigner implements SignerInterface
 
         $signedInfo->appendChild($reference);
 
-        \openssl_sign($signedInfo->C14N(), $signature, \openssl_pkey_get_private($this->private_key), OPENSSL_ALGO_SHA256);
+        \openssl_sign($signedInfo->C14N(), $signature, \openssl_pkey_get_private($this->privateKey), OPENSSL_ALGO_SHA256);
 
         /* ----------------- */
         /* ds:SignatureValue */
