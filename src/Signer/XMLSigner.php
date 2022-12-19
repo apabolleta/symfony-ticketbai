@@ -342,7 +342,7 @@ class XMLSigner implements SignerInterface
 
             ### dsig11:PublicKey
             $ECPublicKey = $doc->createElement("dsig11:PublicKey");
-            $ECPublicKey->nodeValue = \str_replace(["-----BEGIN CERTIFICATE-----", "-----END CERTIFICATE-----", "\r", "\n"], "", $publicKey["key"]);
+            $ECPublicKey->nodeValue = \base64_encode(0x04 . $publicKey["ec"]["x"] . $publicKey["ec"]["y"]);
 
             $ECKeyValue->appendChild($ECPublicKey);
 
