@@ -5,6 +5,7 @@ namespace APM\TicketBAIBundle\TicketBAI;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpClient\HttpClient;
 
 use APM\TicketBAIBundle\Exception\ValidationFailedException;
 use APM\TicketBAIBundle\Serializer\StructureNormalizer;
@@ -127,133 +128,186 @@ class TicketBAI
         "01",  # Rechazado. El fichero de anulación TicketBAI contiene errores que impiden su recepción.
     ];
 
+    const ENV_PROD = "Prod";
+    const ENV_TEST = "Test";
+
     const ENV_ARABA    = "Araba";
     const ENV_BIZKAIA  = "Bizkaia";
     const ENV_GIPUZKOA = "Gipuzkoa";
 
-    const ENV_VALUES = [
-        self::ENV_ARABA,
-        self::ENV_BIZKAIA,
+    const ENV_LIST = [
+        # self::ENV_ARABA,
+        # self::ENV_BIZKAIA,
         self::ENV_GIPUZKOA
     ];
 
-    const XML_VERSION  = "1.0";
-    const XML_ENCODING = "UTF-8";
+    const TICKETBAI_ALTA_URL = [
+        self::ENV_PROD => [
+            self::ENV_ARABA    => "https://ticketbai.araba.eus/TicketBAI/v1/facturas/",
+            self::ENV_BIZKAIA  => null,
+            self::ENV_GIPUZKOA => "https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/alta"
+        ],
+        self::ENV_TEST => [
+            self::ENV_ARABA    => "https://pruebas-ticketbai.araba.eus/TicketBAI/v1/facturas/",
+            self::ENV_BIZKAIA  => null,
+            self::ENV_GIPUZKOA => "https://tbai-z.prep.gipuzkoa.eus/sarrerak/alta"
+        ]
+    ];
 
-    const XML_NS_T               = "T";
-    const XML_NS_T_URI_ALTA      = "urn:ticketbai:emision";
-    const XML_NS_T_URI_ANULACION = "urn:ticketbai:anulacion";
+    const TICKETBAI_ANULACION_URL = [
+        self::ENV_PROD => [
+            self::ENV_ARABA    => "https://ticketbai.araba.eus/TicketBAI/v1/anulaciones/",
+            self::ENV_BIZKAIA  => null,
+            self::ENV_GIPUZKOA => "https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/baja"
+        ],
+        self::ENV_TEST => [
+            self::ENV_ARABA    => "https://pruebas-ticketbai.araba.eus/TicketBAI/v1/anulaciones/",
+            self::ENV_BIZKAIA  => null,
+            self::ENV_GIPUZKOA => "https://tbai-z.prep.gipuzkoa.eus/sarrerak/baja"
+        ]
+    ];
 
-    const XML_NS_DS     = "ds";
-    const XML_NS_DS_URI = "http://www.w3.org/2000/09/xmldsig#";
+    const SIGNATURE_POLICY_IDENTIFIER = [
+        self::ENV_ARABA    => "https://ticketbai.araba.eus/tbai/sinadura/",
+        self::ENV_BIZKAIA  => "https://www.batuz.eus/fitxategiak/batuz/ticketbai/especificaciones_firma_v1_0.pdf",
+        self::ENV_GIPUZKOA => "https://www.gipuzkoa.eus/ticketbai/sinadura"
+    ];
 
-    const XML_NS_XSI              = "xsi";
-    const XML_NS_XSI_URI          = "http://www.w3.org/2001/XMLSchema-instance";
-    const XML_NS_XSI_SL_ALTA      = "urn:ticketbai:emision ticketBaiV1-2-1.xsd";
-    const XML_NS_XSI_SL_ANULACION = "urn:ticketbai:anulacion Anula_ticketBaiV1-2-1.xsd";
+    const SIGNATURE_POLICY_URI = [
+        self::ENV_ARABA    => "https://ticketbai.araba.eus/tbai/sinadura/",
+        self::ENV_BIZKAIA  => "https://www.batuz.eus/fitxategiak/batuz/ticketbai/especificaciones_firma_v1_0.pdf",
+        self::ENV_GIPUZKOA => "https://www.gipuzkoa.eus/ticketbai/sinadura"
+    ];
 
-    const XML_ROOT_NODE_NAME_ALTA      = self::XML_NS_T . ":TicketBai";
-    const XML_ROOT_NODE_NAME_ANULACION = self::XML_NS_T . ":AnulaTicketBai";
+    const SIGNATURE_POLICY_DIGEST_METHOD = [
+        self::ENV_ARABA    => XMLSigner::SHA256,
+        self::ENV_BIZKAIA  => XMLSigner::SHA256,
+        self::ENV_GIPUZKOA => XMLSigner::SHA256
+    ];
+
+    const SIGNATURE_POLICY_DIGEST_VALUE = [
+        self::ENV_ARABA    => "4Vk3uExj7tGn9DyUCPDsV9HRmK6KZfYdRiW3StOjcQA=",
+        self::ENV_BIZKAIA  => "Quzn98x3PMbSHwbUzaj5f5KOpiH0u8bvmwbbbNkO9Es=",
+        self::ENV_GIPUZKOA => "vSe1CH7eAFVkGN0X2Y7Nl9XGUoBnziDA5BGUSsyt8mg="
+    ];
+
+    /**
+     * Flag to set environment.
+     */
+    const ENV = 'env';
+
+    /**
+     * Default context.
+     */
+    private $defaultContext = [
+        self::ENV => self::ENV_PROD
+    ];
+
+    private $validatorContext;
+    private $serializerContext;
+    private $signerContext;
+    private $httpClientContext;
 
     private $validator;
     private $serializer;
     private $signer;
+    private $httpClient;
 
-    private $validator_context;
-    private $serializer_context;
-    private $signer_context;
-
-    public function __construct(string $env = null, bool $strict = false)
+    public function __construct(string $env, string $pkcs12, string $passphrase, bool $strict = false)
     {
+        // Validator
+        if (!\in_array($env, self::ENV_LIST)) {
+            throw new \Exception('Invalid environment value provided.');
+        }
+
+        $this->validatorContext = [
+            'Default',
+            $env
+        ];
+
+        if (true == $strict) {
+            \array_push($this->validatorContext, 'Strict');
+        }
+
         $this->validator = Validation::createValidatorBuilder()
             ->enableAnnotationMapping(true)
             ->addDefaultDoctrineAnnotationReader()
             ->getValidator();
 
-        $this->validator_context = ['Default'];
-
-        if ($env && !\in_array($env, self::ENV_VALUES)) {
-            throw new \InvalidArgumentException('The $env argument contains an invalid value.');
-        }
-
-        if (null != $env) {
-            \array_push($this->validator_context, $env);
-        }
-
-        if (true == $strict) {
-            \array_push($this->validator_context, 'Strict');
-        }
+        // Serializer
+        $this->serializerContext = [
+            XmlEncoder::FORMAT_OUTPUT => true,
+            XmlEncoder::VERSION => "1.0",
+            XmlEncoder::ENCODING => "UTF-8"
+        ];
 
         $encoders = [new XmlEncoder()];
         $normalizers = [new StructureNormalizer()];
 
         $this->serializer = new Serializer($normalizers, $encoders);
 
-        $this->serializer_context = [
-            XmlEncoder::FORMAT_OUTPUT => true,
-            XmlEncoder::VERSION => self::XML_VERSION,
-            XmlEncoder::ENCODING => self::XML_ENCODING
+        // Signer
+        $this->signerContext = [
+            XMLSigner::SIGNATURE_POLICY_IDENTIFIER => self::SIGNATURE_POLICY_IDENTIFIER[$env],
+            XMLSigner::SIGNATURE_POLICY_URI => self::SIGNATURE_POLICY_URI[$env],
+            XMLSigner::SIGNATURE_POLICY_DIGEST_METHOD => self::SIGNATURE_POLICY_DIGEST_METHOD[$env],
+            XMLSigner::SIGNATURE_POLICY_DIGEST_VALUE => self::SIGNATURE_POLICY_DIGEST_VALUE[$env]
         ];
 
-        $this->signer = new XMLSigner();
+        if (!\openssl_pkcs12_read($pkcs12, $certificates, $passphrase)) {
+            throw new \Exception('Invalid certificate store.');
+        }
 
-        $this->signer_context = [
-            XMLSigner::XML_NS_DS => self::XML_NS_DS,
-            XMLSigner::XML_NS_DS_URI => self::XML_NS_DS_URI
+        $this->signer = new XMLSigner($certificates["pkey"], $certificates["cert"], $certificates["extracerts"] ?? []);
+
+        // HTTP Client
+        $this->httpClientContext = [
+            'method' => 'POST',
+            'env' => $env
         ];
+
+        $this->httpClient = HttpClient::create();
     }
 
-    public function alta(FicheroAlta $ficheroAlta): Response
+    public function alta(FicheroAlta $ficheroAlta, string $format = null, array $context = []): Response
     {
-        $violations = $this->validator->validate($ficheroAlta, null, $this->validator_context);
+        $context = \array_merge($this->defaultContext, $context);
+
+        $violations = $this->validator->validate($ficheroAlta, null, $this->validatorContext);
 
         if (count($violations) > 0) {
             throw new ValidationFailedException;
         }
 
-        $serializer_context = \array_merge($this->serializer_context, [XmlEncoder::ROOT_NODE_NAME => self::XML_ROOT_NODE_NAME_ALTA]);
+        $serializerContext = \array_merge($this->serializerContext, [XmlEncoder::ROOT_NODE_NAME => "T:TicketBai"]);
 
-        $arr = $this->serializer->normalize($ficheroAlta, null, $serializer_context);
+        $arr = $this->serializer->normalize($ficheroAlta, null, $serializerContext);
 
         $xml = $this->serializer->encode([
-            '@xmlns:' . self::XML_NS_T => self::XML_NS_T_URI_ALTA,
-            '@xmlns:' . self::XML_NS_DS => self::XML_NS_DS_URI,
-            '@xmlns:' . self::XML_NS_XSI => self::XML_NS_XSI_URI,
-            '@' . self::XML_NS_XSI . ":schemaLocation" => self::XML_NS_XSI_SL_ALTA,
+            '@xmlns:T' => "urn:ticketbai:emision",
+            '@xmlns:ds' => "http://www.w3.org/2000/09/xmldsig#",
+            '@xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+            '@xsi:schemaLocation' => "urn:ticketbai:emision ticketBaiV1-2-1.xsd",
             '#' => $arr
-        ], 'xml', $serializer_context);
+        ], 'xml', $serializerContext);
 
-        $xml_signed = $this->signer->sign($xml, null, $this->signer_context);
+        $xml_signed = $this->signer->sign($xml, null, $this->signerContext);
 
-        # TODO: Send
+        $response = $this->httpClient->request(
+            $this->httpClientContext['method'],
+            self::TICKETBAI_ALTA_URL[$context[self::ENV]][$this->httpClientContext['env']],
+            [
+                'headers' => [
+                    'Content-Type' => 'application/xml;charset=UTF-8'
+                ],
+                'body' => $xml_signed
+            ]);
 
-        # TODO: Return Response
+        return new Response();
     }
 
     public function anulacion(FicheroAnulacion $ficheroAnulacion): Response
     {
-        $violations = $this->validator->validate($ficheroAnulacion, null, $this->validator_context);
-
-        if (count($violations) > 0) {
-            throw new ValidationFailedException;
-        }
-
-        $serializer_context = \array_merge($this->serializer_context, [XmlEncoder::ROOT_NODE_NAME => self::XML_ROOT_NODE_NAME_ANULACION]);
-
-        $arr = $this->serializer->normalize($ficheroAnulacion, null, $serializer_context);
-
-        $xml = $this->serializer->encode([
-            '@xmlns:' . self::XML_NS_T => self::XML_NS_T_URI_ANULACION,
-            '@xmlns:' . self::XML_NS_DS => self::XML_NS_DS_URI,
-            '@xmlns:' . self::XML_NS_XSI => self::XML_NS_XSI_URI,
-            '@' . self::XML_NS_XSI . ":schemaLocation" => self::XML_NS_XSI_SL_ANULACION,
-            '#' => $arr
-        ], 'xml', $serializer_context);
-
-        $xml_signed = $this->signer->sign($xml, null, $this->signer_context);
-
-        # TODO: Send
-
-        # TODO: Return Response
+        throw new \BadMethodCallException("Method " . __METHOD__ . " not implemented.");
     }
 }
