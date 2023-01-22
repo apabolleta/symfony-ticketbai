@@ -13,6 +13,7 @@ use APM\TicketBAIBundle\TicketBAI\Alta\Emisor;
 use APM\TicketBAIBundle\TicketBAI\Alta\Factura;
 use APM\TicketBAIBundle\TicketBAI\Alta\CabeceraFactura;
 use APM\TicketBAIBundle\TicketBAI\Alta\DatosFactura;
+use APM\TicketBAIBundle\TicketBAI\Alta\IDDetalleFactura;
 use APM\TicketBAIBundle\TicketBAI\Alta\IDClave;
 use APM\TicketBAIBundle\TicketBAI\Alta\TipoDesglose;
 use APM\TicketBAIBundle\TicketBAI\Alta\DesgloseFactura;
@@ -57,6 +58,13 @@ final class TicketBAITest extends TestCase
                     ->setDatosFactura(
                         (new DatosFactura())
                             ->setDescripcionFactura("Descripción general de las operaciones.")
+                            ->setDetallesFactura([
+                                (new IDDetalleFactura())
+                                    ->setDescripcionDetalle("Descripción del detalle de la línea de factura.")
+                                    ->setCantidad("1")
+                                    ->setImporteUnitario("3.00")
+                                    ->setImporteTotal("3.00")
+                            ])
                             ->setImporteTotalFactura("3.00")
                             ->setClaves([
                                 (new IDClave())->setClaveRegimenIVAOperacionTranscendencia("01"),
