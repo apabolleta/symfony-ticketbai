@@ -73,15 +73,11 @@ class StructureNormalizer implements NormalizerInterface
                     $normalized[$name] = $this->normalize($value, $format, $context);
                     break;
 
-                case "string":
-                    $normalized[$name] = $value;
-                    break;
-
                 case "NULL":
                     if (true == $context[self::SKIP_NULL_VALUES]) break;
 
                 default:
-                    $normalized[$name] = (string) $value;
+                    $normalized[$name] = $value;
             }
 
         }
